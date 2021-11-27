@@ -3,11 +3,21 @@
     <li><h4 >Home</h4></li>
     <li><h4>Shop Now</h4></li>
   </ul>
-  <div>
-    <input type="text-box" placeholder="Search for a product">
-    <button>Search</button>
-      <mat-icon matBadgeColor="warn"  matBadge="0" matBadgeSize="small">favorite</mat-icon>
-      <mat-icon>person</mat-icon>
-      <mat-icon  matBadgeColor="warn" matBadge="1">shopping_cart</mat-icon>
+  <div class="second-ctnr">
+    <input class="search-bar" type="search" placeholder="Search for a product">
+    <button class="search-btn">search</button>
+      <div class="nav-item-ctnr">
+        <mat-icon class="nav-item" matBadgeColor="warn"  matBadge="0" matBadgeSize="small">favorite</mat-icon>
+        <p>wishlist</p>
+      </div>
+      <div class="nav-item-ctnr">
+        <mat-icon  class="nav-item">person</mat-icon>
+        <p>profile</p>
+      </div>
+      <div class="nav-item-ctnr">
+        <mat-icon  class="nav-item" matBadgeColor="warn" matBadge="1">shopping_cart</mat-icon>
+        <p>cart</p>
+      </div>
   </div>
 </nav>
+<app-home></app-home>

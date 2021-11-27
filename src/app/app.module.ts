@@ -7,6 +7,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './screens/home/home.component';
+import { FeaturedbrandsComponent } from './screens/home/featuredbrands/featuredbrands.component';
+import { FeaturedcategoriesComponent } from './screens/home/featuredcategories/featuredcategories.component';
+import { TodaydealsComponent } from './screens/home/todaydeals/todaydeals.component';
+import { HomepagecoverComponent } from './screens/home/homepagecover/homepagecover.component';
 
 
 
@@ -14,7 +18,11 @@ import { HomeComponent } from './screens/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FeaturedbrandsComponent,
+    FeaturedcategoriesComponent,
+    TodaydealsComponent,
+    HomepagecoverComponent
   ],
   imports: [
     BrowserModule,

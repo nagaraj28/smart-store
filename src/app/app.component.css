@@ -1,5 +1,47 @@
 .container{
     display: flex;
-    background-color: #EEF2FF;
+    background-color: #fff;
     max-width: 100%;
+    justify-content: space-between;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+}
+h4{
+    font-size: 20px;
+    padding: 15px;
+    padding-bottom: 0;
+}
+.second-ctnr{
+    display: flex;
+    padding: 20px;
+    justify-content:space-around;
+    margin:10px;
+    padding-bottom: 0;
+}
+.search-bar{
+    width: 450px;
+    height: 45px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 450;
+    background-color: #fff;
+}
+.nav-item-ctnr{
+    padding:0 25px;
+    text-align: center;
+}
+.nav-item{
+    font-size: 20px;
+}
+p{
+    font-weight:lighter;
+}
+.search-btn{
+    width: 80px;
+    height: 45px;
+    border-radius: 3px;
+    font-size: 15px;
 }
