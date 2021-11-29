@@ -16,6 +16,10 @@ import { ProductlistingcontainerComponent } from './screens/products/productlist
 import { ProductcardComponent } from './screens/products/productcard/productcard.component';
 import { FiltersComponent } from './screens/products/filters/filters.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CartcontainerComponent } from './screens/cart/cartcontainer/cartcontainer.component';
+import { CartlistComponent } from './screens/cart/cartcontainer/cartlist/cartlist.component';
+import { CartitemComponent } from './screens/cart/cartcontainer/cartlist/cartitem/cartitem.component';
+import { PricedetailsComponent } from './screens/cart/cartcontainer/pricedetails/pricedetails.component';
 
 
 
@@ -32,7 +36,12 @@ import { HttpClientModule } from '@angular/common/http';
     ProductlistingComponent,
     ProductlistingcontainerComponent,
     ProductcardComponent,
-    FiltersComponent
+    FiltersComponent,
+    CartcontainerComponent,
+    CartlistComponent,
+    CartitemComponent,
+    PricedetailsComponent,
+    
   ],
   imports: [
     BrowserModule,

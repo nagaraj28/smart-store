@@ -1,0 +1,6 @@
+.cart-ctnr{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 40px;
+    justify-content: center;
+}

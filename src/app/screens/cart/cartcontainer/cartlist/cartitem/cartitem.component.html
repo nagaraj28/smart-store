@@ -1,0 +1,21 @@
+<div class="container" *ngIf="productThere===true">
+    <div class="image-container">
+        <img class="img-item"  [src]=[product.imageURL] />
+    </div>
+    <div>
+        <h4>{{product.displayName}}</h4>
+        <div class="price-desc">
+        <p class="cart-item">Rs. <del>{{product.price}}</del></p>
+        <p class="cart-item">Rs. {{product.offerPrice}}</p>
+        <p class="cart-item"><small><strong>{{product.discount}}% OFF</strong></small></p>
+        </div>
+        <p><small>Delivery: Rs. {{product.deliveryCharge}}</small></p>
+        <div class="qty-ctnr">
+            <button (click)="decreaseQuantity()">-</button>
+            <p>{{quantity}}</p>
+            <button (click)="increaseQuantity()">+</button>
+
+        </div>
+    </div>
+      
+</div>

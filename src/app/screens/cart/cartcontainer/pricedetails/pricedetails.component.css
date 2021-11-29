@@ -1,0 +1,17 @@
+.price-item{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 150px;
+    justify-content: space-between;
+    padding:10px;
+}   
+.order-btn{
+    width: 100%;
+    padding: 10px;
+    background-color:#2BAE66FF;
+    text-align: center;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 2px;
+}
