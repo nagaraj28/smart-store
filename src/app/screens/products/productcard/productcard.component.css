@@ -1,0 +1,39 @@
+.card-ctnr{
+    border-radius: 5px;
+    padding: 5px;
+}
+.card-ctnr:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+.img-ctnr{
+    width: 250px;
+    height: 260px;
+}
+.img-item{
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+}
+.add-btn{
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    color: #2BAE66FF;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #2BAE66FF;
+}
+
+.add-btn:hover{
+    background-color: #2BAE66FF;
+    color: #fff;
+    cursor: pointer;
+}
+.liked,.notliked{
+    font-size: 22px;
+}
+.liked{
+    color: red;
+}
+.notliked{
+    color: rgb(124, 117, 117);
+}

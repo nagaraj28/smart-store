@@ -1,0 +1,10 @@
+.f-main-ctnr{
+    position: fixed;
+    margin-left: 50px;
+    width: 15%;
+    margin-top: 15px;
+    }
+    .f-main-heading{
+       display: flex;
+       justify-content: space-between;
+        }

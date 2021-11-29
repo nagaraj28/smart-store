@@ -12,8 +12,10 @@ import { FeaturedcategoriesComponent } from './screens/home/featuredcategories/f
 import { TodaydealsComponent } from './screens/home/todaydeals/todaydeals.component';
 import { HomepagecoverComponent } from './screens/home/homepagecover/homepagecover.component';
 import { ProductdetailsComponent } from './screens/product-details/productdetails/productdetails.component';
-import { ProductlistingComponent } from './screens/productlisting/productlisting.component';
-import { ProductlistingcontainerComponent } from './screens/productlistingcontainer/productlistingcontainer.component';
+import { ProductlistingComponent } from './screens/products/productlisting/productlisting.component';
+import { ProductlistingcontainerComponent } from './screens/products/productlistingcontainer/productlistingcontainer.component';
+import { ProductcardComponent } from './screens/products/productcard/productcard.component';
+import { FiltersComponent } from './screens/products/filters/filters.component';
 
 
 
@@ -28,7 +30,9 @@ import { ProductlistingcontainerComponent } from './screens/productlistingcontai
     HomepagecoverComponent,
     ProductdetailsComponent,
     ProductlistingComponent,
-    ProductlistingcontainerComponent
+    ProductlistingcontainerComponent,
+    ProductcardComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,

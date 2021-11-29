@@ -1,8 +1,11 @@
 .container{
     display: flex;
     background-color: #fff;
-    max-width: 100%;
+    width: 100%;
     justify-content: space-between;
+    position: fixed;
+    top:0;
+    box-shadow: 0px 4px 5px #888888;
 }
 
 ul{
@@ -16,7 +19,7 @@ h4{
 }
 .second-ctnr{
     display: flex;
-    padding: 20px;
+    padding: 5px;
     justify-content:space-around;
     margin:10px;
     padding-bottom: 0;
@@ -44,4 +47,8 @@ p{
     height: 45px;
     border-radius: 3px;
     font-size: 15px;
+}
+.add-space{
+    position: relative;
+    margin-top: 90px;
 }
