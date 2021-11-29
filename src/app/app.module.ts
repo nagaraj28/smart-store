@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -16,6 +15,7 @@ import { ProductlistingComponent } from './screens/products/productlisting/produ
 import { ProductlistingcontainerComponent } from './screens/products/productlistingcontainer/productlistingcontainer.component';
 import { ProductcardComponent } from './screens/products/productcard/productcard.component';
 import { FiltersComponent } from './screens/products/filters/filters.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -40,7 +40,8 @@ import { FiltersComponent } from './screens/products/filters/filters.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatBadgeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

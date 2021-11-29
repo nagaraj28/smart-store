@@ -1,0 +1,26 @@
+{
+    "displayName":"laptop-2",
+    "shortDesc":"a good laptop in the mid range segment",
+    "desc":"a multicore machine with high end graphics with extended power battery and retina display",
+    "category":"laptops",
+    "price":50000,
+    "discount":10,
+    "deliveryCharge":25,
+    "offerPrice":40000,
+    "seller":"bbk electronics",
+    "sellerCount":4,
+    "avgRating":4.1,
+    "imageURL":"../../.././assets/images/smart-audio/google_mini.jpg",
+    "reviews":[
+        {
+            "userid":"amy",
+            "rating":5,
+            "reviewComments":"very good product in this range"
+        },
+        {
+            "userid":"raghu",
+            "rating":5,
+            "reviewComments":"best product in this range"
+        }
+    ]
+}

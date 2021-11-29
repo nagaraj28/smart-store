@@ -1,5 +1,43 @@
-<div class="main-ctnr">
-    <div class="img-ctnr">
-        <img src="" />
+<div class="container" *ngIf="productThere===true">
+    <div class="image-container">
+        <img class="img-item"  [src]=[product.imageURL] />
+    </div>  
+    <div class="product-desc">
+        <h4>{{product.displayName}}</h4>
+         <p>  <small><strong>Product Info: </strong>
+      {{product.desc}} </small>
+        </p>
+        <div class="rating-ctnr">
+            <p class="rating-box"><small>rating: {{product.avgRating}} </small></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<small><em>{{product.reviews.length}} customers reviewed</em></small></p>
+        </div>
+        <hr/>
+        <p>M.R.P: <del>{{product.price}}</del></p>
+        <p>Price: {{product.offerPrice}}</p>
+        <p><small><strong>You Save: {{product.discount}}%</strong></small></p>
+        <p><small>Delivery Charge: {{product.deliveryCharge}}</small></p>
+        <div class="quantity-ctnr">
+            <p>Quantity: </p>&nbsp;&nbsp;
+            <select (change)="changeQuantity(quant.value)" #quant>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </div>
+        <p>  <small><strong>Product Description: </strong>
+      {{product.desc}} </small>
+        </p>
+        <button class="add-cart-btn" *ngIf="!isItemsThereInCart" (click)="addToCart()"> 
+            Add to cart
+        </button>
+        <button class="add-cart-btn" *ngIf="isItemsThereInCart" (click)="goToCart()"> 
+           Go To Cart
+        </button>
+        <button class="add-cart-btn" (click)="addToWishList()" *ngIf="!isItemsThereInWishList"> 
+            Add to Wishlist
+        </button>
+        <button class="add-cart-btn" (click)="goToWishList()" *ngIf="isItemsThereInWishList"> 
+            Go to Wishlist
+        </button>
     </div>
 </div>
