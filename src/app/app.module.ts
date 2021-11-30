@@ -26,6 +26,8 @@ import { AddressesComponent } from './screens/profile/addresses/addresses.compon
 import { ProfileDetailsComponent } from './screens/profile/profile-details/profile-details.component';
 import { AddressComponent } from './screens/profile/addresses/address/address.component';
 import { AddressformdialogComponent } from './screens/profile/addresses/addressformdialog/addressformdialog.component';
+import { OrdersComponent } from './screens/profile/orders/orders.component';
+import { OrderComponent } from './screens/profile/orders/order/order.component';
 
 
 
@@ -53,6 +55,8 @@ import { AddressformdialogComponent } from './screens/profile/addresses/addressf
     ProfileDetailsComponent,
     AddressComponent,
     AddressformdialogComponent,
+    OrdersComponent,
+    OrderComponent,
     
     
   ],

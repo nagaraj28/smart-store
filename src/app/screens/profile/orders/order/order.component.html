@@ -1,0 +1,37 @@
+<div class="order-ctnr">
+    <h4>Order Confirmed</h4>
+    <p><em>10/12/2021</em></p>
+    <h4>Total Paid Rs.40000</h4>
+    <div>
+        <p>Delivered to Hyderabad</p>
+    </div>
+    <div class="container" *ngIf="productThere===true">
+        <div class="image-container">
+            <img class="img-item"  [src]=[product.imageURL] />
+        </div>
+        <div>
+            <h4>{{product.displayName}}</h4>
+            <div class="price-desc">
+            <p class="cart-item">Rs. <del>{{product.price}}</del></p>
+            <p class="cart-item">Rs. {{product.offerPrice}}</p>
+            <p class="cart-item"><small><strong>{{product.discount}}% OFF</strong></small></p>
+            </div>
+            <p><small>Delivery: Rs. {{product.deliveryCharge}}</small></p>
+        </div>
+    </div>
+    <!--  2nd item  -->
+    <div class="container" *ngIf="productThere===true">
+        <div class="image-container">
+            <img class="img-item"  [src]=[product.imageURL] />
+        </div>
+        <div>
+            <h4>{{product.displayName}}</h4>
+            <div class="price-desc">
+            <p class="cart-item">Rs. <del>{{product.price}}</del></p>
+            <p class="cart-item">Rs. {{product.offerPrice}}</p>
+            <p class="cart-item"><small><strong>{{product.discount}}% OFF</strong></small></p>
+            </div>
+            <p><small>Delivery: Rs. {{product.deliveryCharge}}</small></p>
+        </div>
+    </div>
+</div>
