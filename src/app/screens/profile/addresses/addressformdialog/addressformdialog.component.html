@@ -1,0 +1,30 @@
+<div class="dialog-box" *ngIf="isDialogOpen">
+    <div class="form-ctnr">
+        <div >
+            <mat-icon class="cancel-btn" (click)="closeDialog()" >cancel</mat-icon>
+            <h3 class="dialog-header">add/update address</h3>
+        </div>
+        <form class="form">
+            <label class="input-label">
+                <input class="input-box" type="text-box" placeholder="full name"/><br/>
+            </label>
+            <label class="input-label">
+                <input  class="input-box" type="text-box" placeholder="house No,street,town"/><br/>
+            </label>
+            <label class="input-label">
+                <input  class="input-box" type="text-box" placeholder="city"/><br/>
+            </label>
+            <label class="input-label">
+                <input class="input-box" type="text-box" placeholder="state"/><br/>
+            </label>
+            <label class="input-label">
+                <input  class="input-box" type="number" placeholder="pincode"/><br/>
+            </label>
+            <label class="input-label">
+                <input  class="input-box" type="number" placeholder="mobile"/><br/>
+            </label>
+            <button class="dialog-btns">save</button>
+            <button class="dialog-btns" (click)="closeDialog()">cancel</button>
+        </form> 
+    </div>
+</div>

@@ -20,6 +20,12 @@ import { CartcontainerComponent } from './screens/cart/cartcontainer/cartcontain
 import { CartlistComponent } from './screens/cart/cartcontainer/cartlist/cartlist.component';
 import { CartitemComponent } from './screens/cart/cartcontainer/cartlist/cartitem/cartitem.component';
 import { PricedetailsComponent } from './screens/cart/cartcontainer/pricedetails/pricedetails.component';
+import { WishlistComponent } from './screens/wishlist/wishlist.component';
+import { ProfileComponent } from './screens/profile/profile.component';
+import { AddressesComponent } from './screens/profile/addresses/addresses.component';
+import { ProfileDetailsComponent } from './screens/profile/profile-details/profile-details.component';
+import { AddressComponent } from './screens/profile/addresses/address/address.component';
+import { AddressformdialogComponent } from './screens/profile/addresses/addressformdialog/addressformdialog.component';
 
 
 
@@ -41,6 +47,13 @@ import { PricedetailsComponent } from './screens/cart/cartcontainer/pricedetails
     CartlistComponent,
     CartitemComponent,
     PricedetailsComponent,
+    WishlistComponent,
+    ProfileComponent,
+    AddressesComponent,
+    ProfileDetailsComponent,
+    AddressComponent,
+    AddressformdialogComponent,
+    
     
   ],
   imports: [

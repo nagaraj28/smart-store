@@ -1,8 +1,8 @@
-.cart-ctnr{
+.wishlist-ctnr{
     display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 40px;
+    grid-template-columns: auto auto auto auto;
     justify-content: center;
+    align-items: center;
 }
 .cart-heading{
     text-align: center;

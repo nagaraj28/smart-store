@@ -1,0 +1,17 @@
+.heading-txt{
+    font-size: 20px;
+}
+.prof-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.log-btn{
+    height: 30px;
+    background-color: #F3F4F6;
+    border: 1px solid #F3F4F6;
+    color: #000;
+    border-radius: 5px;
+}
+.log-btn:hover{
+    cursor: pointer;
+}

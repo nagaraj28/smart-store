@@ -1,0 +1,61 @@
+.dialog-box{
+    display: flex;
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    top: 1%;
+    z-index: 1;
+    text-align: center;
+}
+.dialog-header{
+    font-size: 17px;
+    padding-top: 10px;
+    color: #000;
+    font-weight: 500;
+
+}
+.form-ctnr{
+padding-top: 5px;
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+border-radius: 3px;
+}
+.input-label{
+    padding:30px;
+}
+.input-box{
+    width: 250px;
+    height: 50px;
+    padding:10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.form{
+    position: relative;
+    margin: 0 auto;
+    padding: 40px;
+    padding-top: 10px;
+}
+.dialog-btns{
+    height: 35px;
+    padding: 0 20px;
+    margin: 20px;   
+    border-radius: 3px;
+    background-color: #fff;
+    color: #000;
+    border:1px solid #2BAE66FF ;
+    font-size: 15px;
+    font-weight: 500;
+}
+.dialog-btns:hover{
+    cursor: pointer;
+    background-color: #2BAE66FF;
+}
+.cancel-btn{
+    float: right;
+    font-size: 22px;
+}
+.cancel-btn:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+}

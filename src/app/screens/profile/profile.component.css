@@ -1,0 +1,26 @@
+.prof-ctnr{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    grid-gap: 50px;
+}
+.profile-list{
+    list-style: none;
+    border-right: 1px solid rgb(236, 211, 211);
+}
+.prof-heading{
+    text-align: center;
+    font-size: 22px;
+}
+.prof-heading-txt{
+    font-size: 25px;
+    font-weight: 500;
+}
+.list-item{
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 20px;
+    padding-left: 0;
+    border-bottom: 1px solid rgb(236, 211, 211);
+
+}
