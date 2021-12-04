@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-productcard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductcardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService:ProductsService) { }
   isWishListed!:boolean;
   ngOnInit(): void {
   }
