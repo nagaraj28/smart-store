@@ -28,6 +28,10 @@ import { AddressComponent } from './screens/profile/addresses/address/address.co
 import { AddressformdialogComponent } from './screens/profile/addresses/addressformdialog/addressformdialog.component';
 import { OrdersComponent } from './screens/profile/orders/orders.component';
 import { OrderComponent } from './screens/profile/orders/order/order.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 
@@ -57,8 +61,6 @@ import { OrderComponent } from './screens/profile/orders/order/order.component';
     AddressformdialogComponent,
     OrdersComponent,
     OrderComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,9 @@ import { OrderComponent } from './screens/profile/orders/order/order.component';
     MatIconModule,
     MatBadgeModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

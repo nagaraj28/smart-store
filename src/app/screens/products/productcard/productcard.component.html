@@ -1,20 +1,24 @@
-<div class="card-ctnr">
-    <div class="img-ctnr">
-        <img class="img-item" src="../../../assets/images/smart-watches/samsung_watch.jpg" />
+<div class="card-ctnr" >
+    <div class="img-ctnr" [routerLink]="'/products/'+product._id">
+        <img class="img-item" [src]="'../../../assets/images/'+product.imageURL" />
     </div>
     <div class="txt-ctnr">
-        <span>title</span>
-        <mat-icon class="nav-item" [ngClass]="{
-        'liked':isWishListed,
-        'notliked':!isWishListed
-        }" (click)="changeColor()">favorite</mat-icon>
-        <p>short desc</p>
-        <div>
-            <span>rating</span> | <span>4</span>
+        <div class="title-ctnr">
+            <p class="title-txt" [routerLink]="'/products/'+product._id">{{product.displayName}}</p>
+            <mat-icon class="nav-item" [ngClass]="{
+            'liked':isWishListed,
+            'notliked':!isWishListed
+            }" (click)="changeColor()">favorite</mat-icon>
         </div>
-        <span> Rs. 100 </span>
-        <span> Rs. 200 </span>
-        <span> (50% OFF) </span>
+        <div  [routerLink]="'/products/'+product._id">
+            <p>{{product.shortDescription}}</p>
+        <div class="rating">
+        <span>{{product.avgRating}}</span><mat-icon class="star-icon">star</mat-icon>
+        </div>
+        <span> {{product.offerPrice |currency:'INR'}}  </span>
+        <span><del>{{product.price |currency:'INR'}}</del></span>
+        <span> {{product.discount}}%</span>
+        </div>
     </div>
     <button class="add-btn">Add to Cart</button>
 </div>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductdetailsService } from 'src/app/screens/product-details/productdetails.service';
 import { Router } from '@angular/router';
+import { Products } from 'src/app/screens/products/productcard/products';
 
 @Component({
   selector: 'app-cartitem',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./cartitem.component.css']
 })
 export class CartitemComponent implements OnInit {
-
   constructor(private productDetailService:ProductdetailsService,private router:Router) { }
   productThere!:boolean;
-  product!:ProductType;
+  @Input()product!:any;
   quantity:number=1;
-  ngOnInit(): void {
-    this.productDetailService.getProduct().subscribe(
+  productdetail!:Products;
+
+  ngOnInit(): void {  
+    this.productDetailService.getProduct(this.product.productid).subscribe(
       (data:any)=>{
         this.product=data;
         this.productThere=true;
@@ -36,18 +38,18 @@ export class CartitemComponent implements OnInit {
   }
 
 }
-interface ProductType{
-  displayName:string,
-  shortDesc:string,
-  desc:string,
-  category:string,
-  price:number,
-  discount:number,
-  deliveryCharge:number,
-  offerPrice:number,
-  seller:string,
-  sellerCount:number,
-  avgRating:number,
-  imageURL:string,
-  reviews:any[]
-}
+// interface ProductType{
+//   displayName:string,
+//   shortDesc:string,
+//   desc:string,
+//   category:string,
+//   price:number,
+//   discount:number,
+//   deliveryCharge:number,
+//   offerPrice:number,
+//   seller:string,
+//   sellerCount:number,
+//   avgRating:number,
+//   imageURL:string,
+//   reviews:any[]
+// }

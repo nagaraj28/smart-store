@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
   product!:ProductType;
   quantity:number=1;
   ngOnInit(): void {
-    this.productDetailService.getProduct().subscribe(
+    this.productDetailService.getProduct("61a88a6fd6ec9be11b70dd3c").subscribe(
       (data:any)=>{
         this.product=data;
         this.productThere=true;

@@ -1,3 +1,5 @@
 <div class="list-ctnr">
-    <app-productcard  *ngFor="let item of items"></app-productcard>
+        <span *ngFor="let eachProduct of allProducts">
+            <app-productcard [product]='eachProduct' ></app-productcard>
+        </span>
 </div>

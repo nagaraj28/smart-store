@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductdetailsService } from '../productdetails.service';
+import { ActivatedRoute } from '@angular/router';
+import { Products } from '../../products/productcard/products';
 
 @Component({
   selector: 'app-productdetails',
@@ -8,20 +10,22 @@ import { ProductdetailsService } from '../productdetails.service';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent implements OnInit {
-  constructor(private productDetailService:ProductdetailsService,private router:Router) { }
+  constructor(private productDetailService:ProductdetailsService,private router:Router,private route: ActivatedRoute) { }
   productThere!:boolean;
-  product!:ProductType;
+  product!:Products;
   quantity:number=1;
   giveRating:number=1;
   isItemsThereInCart!:boolean;
   isItemsThereInWishList!:boolean
   reviewEntered!:string
   ngOnInit(): void {
-    this.productDetailService.getProduct().subscribe(
+    console.log(this.route.snapshot.paramMap)
+    const productId:string=this.route.snapshot.paramMap.get("productid")||'';
+    this.productDetailService.getProduct(productId).subscribe(
       (data:any)=>{
-        this.product=data;
+        this.product=data.products;
         this.productThere=true;
-        console.log(this.product);
+        // console.log(this.product);
       },
       (err:any)=>{
         console.log("error fetching details");
@@ -72,19 +76,4 @@ export class ProductdetailsComponent implements OnInit {
   submitReview(){
       console.log(this.reviewEntered)
   }
-}
-interface ProductType{
-  displayName:string,
-  shortDesc:string,
-  desc:string,
-  category:string,
-  price:number,
-  discount:number,
-  deliveryCharge:number,
-  offerPrice:number,
-  seller:string,
-  sellerCount:number,
-  avgRating:number,
-  imageURL:string,
-  reviews:any[]
 }

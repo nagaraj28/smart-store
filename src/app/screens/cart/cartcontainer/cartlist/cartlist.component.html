@@ -1,3 +1,5 @@
 <div>
-    <app-cartitem *ngFor="let item of dummyArray"></app-cartitem>
+    <span *ngFor="let cartProduct of cartProducts" cartProducts>
+        <app-cartitem [product] = "cartProduct" ></app-cartitem>
+    </span>
 </div>

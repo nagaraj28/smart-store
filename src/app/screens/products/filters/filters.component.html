@@ -1,20 +1,24 @@
 <div class="f-main-ctnr">
     <div class="f-main-heading">
         <h3 class="head-item">FILTERS</h3>
-         <a class="head-item">CLEAR ALL</a>
+         <a class="head-item clearall-btn" (click)="clearAll()">CLEAR ALL</a>
     </div>
     <div class="category-ctnr">
         <div class="f-header">
             <h3>SORT</h3>
         </div>
         <div class="f-list">
-            <div class="f-item">
-                <label>
-                    <input type="radio" />Price Low to High
-                </label><br/>
-                <label>
-                    <input type="radio" />Price High to Low
-                </label>
+            <div class="f-item" >
+                <mat-radio-group  [(ngModel)]="sort" (change)="categoriesChange()" class="radio-ctnr">
+                    <mat-radio-button value="low"  >
+                        Price Low to High
+                    </mat-radio-button>
+                    <mat-radio-button value="high">
+                        Price High to Low
+                    </mat-radio-button>
+                </mat-radio-group >
+              
+             
             </div>
         </div>
     </div>
@@ -22,12 +26,13 @@
         <div class="f-header">
             <h3>CATEGORY</h3>
         </div>
-        <div class="f-list">
-            <div class="f-item">
-                <label>
-                    <input type="checkbox" />Smart Watches
-                </label><br/>
-            </div>
+        <div class="f-list" >
+                <div class="f-item" *ngFor="let category of categories;let i=index">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="categoriesData[category]" (change)="categoriesChange()" />smart {{category}}
+                    </label><br/>
+                </div>
+              
         </div>
     </div>
     <div class="category-ctnr">
@@ -35,9 +40,9 @@
             <h3>BRAND</h3>
         </div>
         <div class="f-list">
-            <div class="f-item">
+            <div class="f-item" *ngFor="let brand of brands">
                 <label>
-                    <input type="checkbox" />Google
+                    <input type="checkbox" [(ngModel)]="brandsData[brand]" (change)="brandsChange()"/>{{brand}}
                 </label><br/>
             </div>
         </div>

@@ -1,5 +1,6 @@
 
 export class Products{
+    _id!:any;
     displayName!:string;
     shortDescription!:string;
     longDescription!:string;

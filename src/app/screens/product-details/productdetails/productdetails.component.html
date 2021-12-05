@@ -1,15 +1,15 @@
-<div class="container" *ngIf="productThere===true">
+<div class="container" *ngIf="product">
     <div class="image-container">
-        <img class="img-item"  [src]=[product.imageURL] />
+        <img class="img-item" [src]="'../../../assets/images/'+product.imageURL" />
     </div>  
     <div class="product-desc">
         <h4>{{product.displayName}}</h4>
-         <p>  <small><strong>Product Info: </strong>
-      {{product.desc}} </small>
+         <p>  <small><strong>Product Info:</strong>
+            {{product.shortDescription}}</small>
         </p>
         <div class="rating-ctnr">
             <p class="rating-box"><small>rating: {{product.avgRating}} </small></p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<small><em>{{product.reviews.length}} customers reviewed</em></small></p>
+            <!-- <p>&nbsp;&nbsp;&nbsp;&nbsp;<small><em>{{product.reviews.length}} customers reviewed</em></small></p> -->
         </div>
         <hr/>
         <p>M.R.P: <del>{{product.price}}</del></p>
@@ -25,7 +25,7 @@
             </select>
         </div>
         <p>  <small><strong>Product Description: </strong>
-      {{product.desc}} </small>
+      {{product.longDescription}} </small>
         </p>
         <button class="add-cart-btn" *ngIf="!isItemsThereInCart" (click)="addToCart()"> 
             Add to cart
