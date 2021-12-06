@@ -1,19 +1,20 @@
-<div class="container" *ngIf="product">
+<div class="container" *ngIf="productdetail">
     <div class="image-container">
-        <img class="img-item"  [src]=[productdetail.imageURL] />
+        <img class="img-item"  [src]="'../../assets/images/'+productdetail.imageURL" />
     </div>
     <div>
         <h4>{{productdetail.displayName}}</h4>
         <div class="price-desc">
-        <p class="cart-item">Rs. <del>{{productdetail.price}}</del></p>
-        <p class="cart-item">Rs. {{productdetail.offerPrice}}</p>
+        <p class="cart-item">Rs. <del>{{productdetail.price*quantity}}</del></p>
+        <p class="cart-item">Rs. {{productdetail.offerPrice*quantity}}</p>
         <p class="cart-item"><small><strong>{{productdetail.discount}}% OFF</strong></small></p>
         </div>
         <p><small>Delivery: Rs. {{productdetail.deliveryCharge}}</small></p>
         <div class="qty-ctnr">
-            <button (click)="decreaseQuantity()">-</button>
-            <p>{{quantity}}</p>
-            <button (click)="increaseQuantity()">+</button>
+            <button *ngIf="quantity>1" (click)="decreaseQuantity(productdetail._id)">-</button>
+            <mat-icon *ngIf="quantity===1"class="delete-btn" (click)="removeProductFromCart(product._id)">delete</mat-icon>
+            <p class="qty-txt">{{quantity}}</p>
+            <button (click)="increaseQuantity(productdetail._id)">+</button>
         </div>
     </div>
 </div>

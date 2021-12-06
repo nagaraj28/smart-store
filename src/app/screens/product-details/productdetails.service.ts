@@ -12,7 +12,9 @@ export class ProductdetailsService {
   constructor(private http:HttpClient) { }
   getProduct(productId:string):Observable<Products>{
     return this.http.get<Products>(URL+"products/product/"+productId).pipe(
-      tap(((data:any)=>console.log(data.products))),
+      tap(((data:any)=>{
+        // console.log(data.products);
+      })),
       catchError(this.handleError)
     );
   }

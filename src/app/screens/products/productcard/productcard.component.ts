@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 import { Products } from './products';
-
+import { Router } from '@angular/router';
+import { WishlistService } from '../../wishlist/wishlist.service';
+import { CartlistService } from '../../cart/cartcontainer/cartlist/cartlist.service';
 @Component({
   selector: 'app-productcard',
   templateUrl: './productcard.component.html',
@@ -9,18 +11,61 @@ import { Products } from './products';
 })
 export class ProductcardComponent implements OnInit {
 
-  constructor(private productService:ProductsService) { }
+  constructor(private productService:ProductsService,private router:Router,private wishListService:WishlistService,
+    private cartListService:CartlistService) { }
   isWishListed!:boolean;
+  isInCart!:boolean;
   
   @Input() product!:Products;
   
   ngOnInit(): void {
     // this.getAllProducts();
+    // console.log(this.wishListService.wishListProducts)
+    // console.log(this.wishListService.wishListProducts,this.product);
+     this.isWishListed = this.wishListService.wishListProducts.some((prod)=>this.product._id===prod._id);
+      this.isInCart = this.cartListService.cartProducts.some((prod)=>this.product._id===prod._id);
+  }
+  ngDoCheck():void{
+    // this.isWishListed = this.wishListService.wishListProducts.includes(this.product);
+    // this.isInCart = this.wishListService.wishListProducts.includes(this.product);
+    // console.log(this.isWishListed);
   }
   changeColor(){
     this.isWishListed =!this.isWishListed;
   }
+  
 
+    addToCart(productid:any){
+      this.productService.addToCart(productid,1).subscribe(data=>{
+        console.log("add to cart subscribe value",data);
+        this.isInCart =!this.isInCart;
+      });
+      // console.log("add to cart")
+    }
+    /*
+    add to wishlist 
+    */
+    addToWishlist(productid:any){
+      this.productService.addToWishlist(productid).subscribe(data=>{
+        console.log("add to cart subscribe value",data);
+        this.changeColor();
+      });
+    }
+        /*
+    add to wishlist 
+    */
+    removeFromWishlist(productid:any){
+      this.productService.deleteFromWishlist(productid).subscribe(data=>{
+        console.log("add to cart subscribe value",data);
+        this.changeColor();
+      });
+    }
+    /*
+    go to cart
+    */
+    goToCart(){
+      this.router.navigate(['/cart']);
+    }
   // getAllProducts(){
   //   this.productService.getAllProducts().subscribe(
   //     (data:any)=>{

@@ -42,3 +42,14 @@
 .qty-ctnr{
     display: flex;
 }
+
+.delete-btn{
+    color: rgb(49, 45, 45);
+    font-size: 28px;
+}
+.qty-txt{
+   padding: 0 4px;
+}
+button,.delete-btn{
+    cursor: pointer;
+}

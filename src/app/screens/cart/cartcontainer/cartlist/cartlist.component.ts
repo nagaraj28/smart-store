@@ -15,14 +15,18 @@ export class CartlistComponent implements OnInit {
     this.getCartProducts();
   }
   getCartProducts(){
-    this.cartlistService.getcart().subscribe(
+    this.cartlistService.getCart().subscribe(
       (data:any)=>{
-      this.cartProducts = data.data;
+      this.cartProducts = data.data[0].cartproducts;
+      //  console.log(this.cartProducts);
     },
     (err:any)=>{
       console.log("error in cart items");
     }
     );
+  }
+  ngDoCheck():void{
+    this.cartProducts = this.cartlistService.cartProducts;
   }
 
 }

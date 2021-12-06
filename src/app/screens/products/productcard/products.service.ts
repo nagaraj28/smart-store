@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Products } from './products';
 import { URL } from 'src/config/config';
@@ -178,6 +178,9 @@ export class ProductsService {
             }
     }
 
+    /* 
+    sorting products by price
+    */
     sortItems(data:Products[],sort:string):Products[]{
       if(sort==="low"){
         // console.log(sort);
@@ -194,7 +197,71 @@ export class ProductsService {
         // return data.sort((firstProduct,secondProduct)=>secondProduct.avgRating-firstProduct.avgRating);
       }
     }
+
+    /*
+    add item to cart
+    */
+    addToCart(data:any,quantity:number):Observable<any>{
+      const headers = new HttpHeaders();
+      headers.set('Content-Type', 'application/json');
+      let options={
+        userid:"61a90be83a201bfb11a743db",
+        productid:data,
+        quantity:quantity
+      }
+      // console.log("add to cart items",optionsObject)
+      const urlLink = URL+'ecommerceuser/addcart'
+      const optionsObject = JSON.stringify(options);
+      console.log(urlLink);
+       return this.http.post<any>(urlLink,options,{headers:headers}).pipe(
+          tap(data=>console.log("add to cart console message",data)),
+          catchError(err=>this.handleError(err))
+          );
+    }
+
+
+    /*
+    add item to wishlist
+    */
+    
+    addToWishlist(data:any):Observable<any>{
+      const headers = new HttpHeaders();
+      headers.set('Content-Type', 'application/json; charset=utf-8');
+      const options={
+        userid:"61a90be83a201bfb11a743db",
+        productid:data
+            }
+          return this.http.post<any>(URL+'ecommerceuser/addwishlist',options,{headers:headers}).pipe(
+          tap(data=>console.log("add to wishlist console message",data)),
+          catchError(err=>this.handleError(err))
+          );
+    }
+
+    /*
+    delete item to cart
+    */
+    
+    deleteFromWishlist(data:any):Observable<any>{
+      const headers = new HttpHeaders();
+      headers.set('Content-Type', 'application/json; charset=utf-8');
+            const options = {
+              headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+              }),
+              body: {
+                userid: "61a90be83a201bfb11a743db",
+                productid: data,
+              },
+            };
+        return this.http.delete<any>(URL+'ecommerceuser/deletefromcart',options).pipe(
+          tap(data=>console.log("delete wishlist console message",data)),
+          catchError(err=>this.handleError(err))
+          );
+    }
+
+
   private handleError(httpError:HttpErrorResponse):Observable<any>{
+    console.log("error ")
         const errorMessage = "some error occured in fetching products,please refresh ";
         return throwError(errorMessage);
   }

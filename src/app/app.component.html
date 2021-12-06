@@ -1,12 +1,12 @@
 <nav class="container">
   <ul>
-    <li><h4 >Home</h4></li>
-    <li><a routerLink="/products">Shop Now</a></li>
+    <li  routerLink ="/"><h4 >Home</h4></li>
+    <li routerLink="/products"><h4>Shop Now</h4></li>
   </ul>
   <div class="second-ctnr">
     <input class="search-bar" type="search" placeholder="Search for a product">
-    <button class="search-btn" routerLink ="/wishlist">search</button>
-      <div class="nav-item-ctnr">
+    <button class="search-btn">search</button>
+      <div class="nav-item-ctnr"  routerLink ="/wishlist">
         <mat-icon class="nav-item" matBadgeColor="warn"  matBadge="0" matBadgeSize="small">favorite</mat-icon>
         <p>wishlist</p>
       </div>
