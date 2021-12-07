@@ -11,16 +11,36 @@ import { ProductsService } from '../productcard/products.service';
 })
 export class ProductlistingComponent implements OnInit {
   constructor(private productService:ProductsService,private wishListService:WishlistService,
-    private cartListService:CartlistService) { }
+  private cartListService:CartlistService) { }
   allProducts!:Products[];
   // wishlistProducts!:Products[];
   ngOnInit(): void {
     console.log("hello do init");
     let dataIds!:any;
 
-    /*
+    
+    this.getCartListProducts();
+    this.getWishListProducts();
+ 
+    
+// this.getAllProducts();
+// this.allProducts=this.productService.modifiedProducts;
+  }
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe(
+      (data:any)=>{
+        this.allProducts = data.products;
+        // console.log("products",data)
+      },
+      (error)=>{
+        console.log("error in products",error);
+      }
+    );
+  }
+  /*
     get cartlist products
     */
+  getCartListProducts(){
     this.cartListService.getCart().subscribe((data:any)=>{
       console.log(data.data[0])
       this.cartListService.getCartlistProducts(data.data[0].cartproducts).subscribe(
@@ -33,12 +53,13 @@ export class ProductlistingComponent implements OnInit {
       );
     }, (err:any)=>{
       console.log("error in getting cartlist products id's")
-    })
+    });
+  }
 
-
-    /*
+     /*
     get wishlist products
     */
+   getWishListProducts(){
     this.wishListService.getWishlist().subscribe((data:any)=>{
       this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
         // this.wishlistProducts=data.products;
@@ -55,23 +76,10 @@ export class ProductlistingComponent implements OnInit {
     (err:any)=>{
       console.log("error in getting wishlist products id's")
     });
+   }
+  
    
-    
-// this.getAllProducts();
-// this.allProducts=this.productService.modifiedProducts;
 
-  }
-  getAllProducts(){
-    this.productService.getAllProducts().subscribe(
-      (data:any)=>{
-        this.allProducts = data.products;
-        // console.log("products",data)
-      },
-      (error)=>{
-        console.log("error in products",error);
-      }
-    )
-  }
   ngDoCheck():void	{
     this.allProducts=this.productService.modifiedProducts;
     // console.log(this.allProducts)

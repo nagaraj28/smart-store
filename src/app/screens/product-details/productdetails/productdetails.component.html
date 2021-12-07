@@ -27,17 +27,17 @@
         <p>  <small><strong>Product Description: </strong>
       {{product.longDescription}} </small>
         </p>
-        <button class="add-cart-btn" *ngIf="!isItemsThereInCart" (click)="addToCart()"> 
+        <button class="add-cart-btn secondary" *ngIf="!isItemsThereInCart" (click)="addToCart(product._id)"> 
             Add to cart
         </button>
-        <button class="add-cart-btn" *ngIf="isItemsThereInCart" (click)="goToCart()"> 
+        <button class="add-cart-btn secondary" *ngIf="isItemsThereInCart" (click)="goToCart()"> 
            Go To Cart
         </button>
-        <button class="add-cart-btn" (click)="addToWishList()" *ngIf="!isItemsThereInWishList"> 
-            Add to Wishlist
+        <button class="add-cart-btn primary" (click)="addToWishList(product._id)" *ngIf="!isItemsThereInWishList"> 
+          Add To Wishlist
         </button>
-        <button class="add-cart-btn" (click)="goToWishList()" *ngIf="isItemsThereInWishList"> 
-            Go to Wishlist
+        <button class="add-cart-btn primary" (click)="removeFromWishList(product._id)" *ngIf="isItemsThereInWishList"> 
+            Remove From Wishlist
         </button>
     </div>
 </div>

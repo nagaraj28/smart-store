@@ -5,8 +5,8 @@
     <div class="txt-ctnr">
         <div class="title-ctnr">
             <p class="title-txt" [routerLink]="'/products/'+product._id">{{product.displayName}}</p>
-            <mat-icon *ngIf="isWishListed" class="nav-item liked" (click)="addToWishlist(product._id)">favorite</mat-icon>
-            <mat-icon *ngIf="!isWishListed" class="nav-item notliked" >favorite</mat-icon>
+            <mat-icon *ngIf="isWishListed" class="nav-item liked" (click)="removeFromWishlist(product._id)">favorite</mat-icon>
+            <mat-icon *ngIf="!isWishListed" class="nav-item notliked" (click)="addToWishlist(product._id)">favorite</mat-icon>
         </div>
         <div  [routerLink]="'/products/'+product._id">
             <p>{{product.shortDescription}}</p>

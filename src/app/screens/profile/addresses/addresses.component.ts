@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressesService } from './addresses.service';
 
 @Component({
   selector: 'app-addresses',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private addressesService:AddressesService) { }
 
   ngOnInit(): void {
+  }
+
+  addNewAddress():void{
+    this.addressesService.setDialogTitle("add");
+    this.addressesService.openDialog();
   }
 
 }

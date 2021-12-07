@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressesService } from '../addresses.service';
 
 @Component({
   selector: 'app-addressformdialog',
@@ -8,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class AddressformdialogComponent implements OnInit {
 
   isDialogOpen:boolean=false;
-  constructor() { }
-
+  constructor(private addressesService:AddressesService) { }
+  title!:string;
   ngOnInit(): void {
+    this.isDialogOpen = this.addressesService.isDialogOpen;
+    this.title = this.addressesService.dialogBoxTitle;
+  }
+  ngDoCheck():void{
+    this.isDialogOpen = this.addressesService.isDialogOpen;
+    this.title = this.addressesService.dialogBoxTitle;
   }
   closeDialog(){
-    this.isDialogOpen=!this.isDialogOpen;
+    this.addressesService.closeDialog();
   }
 }

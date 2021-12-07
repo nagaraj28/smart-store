@@ -26,8 +26,7 @@ export class CartlistService {
       catchError(this.handleError)
     );
   }
-
- 
+  
   /*
   get cart products
   */
@@ -43,21 +42,20 @@ export class CartlistService {
       catchError(this.handleError)
     );
   }
-
-
          /*
     remove item to cart
     */
-    removeFromCart(data:string):Observable<any>{
+    removeFromCart(productid:string):Observable<any>{
       // const headers = new HttpHeaders();
       // headers.set('Content-Type', 'application/json; charset=utf-8');
+      // console.log(data)
             const options = {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
               }),
               body: {
                 userid: "61a90be83a201bfb11a743db",
-                productid: data,
+                productid: productid,
               },
             };
     

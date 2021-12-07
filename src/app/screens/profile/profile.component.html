@@ -4,19 +4,23 @@
     </div>
     <div class="prof-ctnr">
         <ul class="profile-list">
-            <li class="list-item">
+            <li class="list-item" routerLink="/profile">
                 Profile
             </li>
-            <li class="list-item">
+            <li class="list-item" routerLink="/profile/orders"> 
                 Orders
             </li>
-            <li class="list-item">
+            <li class="list-item"  routerLink="/profile/addresses">
                 Addresses
             </li>
         </ul>
         <!-- <app-profile-details></app-profile-details> -->
         <!-- <app-addresses></app-addresses> -->
-        <app-orders></app-orders>
+        <!-- <app-orders></app-orders> -->
+        <div>
+            <router-outlet></router-outlet>
+        </div>
     </div>
+
 </div>
 <app-addressformdialog></app-addressformdialog>

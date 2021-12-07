@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartlistService } from '../cart/cartcontainer/cartlist/cartlist.service';
 import { WishlistService } from './wishlist.service';
+import { Products } from '../products/productcard/products';
 
 @Component({
   selector: 'app-wishlist',
@@ -10,7 +11,7 @@ import { WishlistService } from './wishlist.service';
 export class WishlistComponent implements OnInit {
   items:any[] = [" "," "," "," "," "," "," "];
   wishlistDataIds!:any;
-  wishlistProducts!:any;
+  wishlistProducts!:Products[];
   constructor(private wishlistService:WishlistService,private cartlistService:CartlistService) { }
   ngOnInit(): void {
       /*
@@ -31,9 +32,18 @@ export class WishlistComponent implements OnInit {
       console.log("error in getting cartlist products id's")
     });
   }
+
+  ngDoCheck():void{
+    console.log(this.wishlistService.wishListProducts);
+    this.wishlistProducts = this.wishlistService.wishListProducts;
+  }
+
+    /*
+  get wishlist products id's-array
+  */
   getWishlist(){
     this.wishlistService.getWishlist().subscribe((data:any)=>{
-      this.wishlistDataIds = data.data[0].wishlistproducts
+      this.wishlistDataIds = data.data[0].wishlistproducts;
       this.getWishlistProducts(this.wishlistDataIds);
     },
     (err)=>{
@@ -41,6 +51,10 @@ export class WishlistComponent implements OnInit {
     }
     );
   }
+
+    /*
+  get wishlist products details
+  */
   getWishlistProducts(data:any[]){
     console.log(data);
     this.wishlistService.getWishlistProducts(data).subscribe(
@@ -49,6 +63,8 @@ export class WishlistComponent implements OnInit {
         // console.log(this.wishlistProducts);
       },
       (err=>console.log("error in fetching wishlist products...") )
-    )
+    );
   }
+
+
 } 

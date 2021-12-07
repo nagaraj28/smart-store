@@ -21,13 +21,6 @@ import { CartlistComponent } from './screens/cart/cartcontainer/cartlist/cartlis
 import { CartitemComponent } from './screens/cart/cartcontainer/cartlist/cartitem/cartitem.component';
 import { PricedetailsComponent } from './screens/cart/cartcontainer/pricedetails/pricedetails.component';
 import { WishlistComponent } from './screens/wishlist/wishlist.component';
-import { ProfileComponent } from './screens/profile/profile.component';
-import { AddressesComponent } from './screens/profile/addresses/addresses.component';
-import { ProfileDetailsComponent } from './screens/profile/profile-details/profile-details.component';
-import { AddressComponent } from './screens/profile/addresses/address/address.component';
-import { AddressformdialogComponent } from './screens/profile/addresses/addressformdialog/addressformdialog.component';
-import { OrdersComponent } from './screens/profile/orders/orders.component';
-import { OrderComponent } from './screens/profile/orders/order/order.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
@@ -54,13 +47,6 @@ import {MatRadioModule} from '@angular/material/radio';
     CartitemComponent,
     PricedetailsComponent,
     WishlistComponent,
-    ProfileComponent,
-    AddressesComponent,
-    ProfileDetailsComponent,
-    AddressComponent,
-    AddressformdialogComponent,
-    OrdersComponent,
-    OrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ export class CartlistComponent implements OnInit {
   dummyArray:any[]=["","","",""]
   constructor(private cartlistService:CartlistService) { }
   cartProducts:Products[]=[];
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.getCartProducts();
   }
   getCartProducts(){

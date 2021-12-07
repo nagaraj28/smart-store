@@ -7,15 +7,15 @@
     <input class="search-bar" type="search" placeholder="Search for a product">
     <button class="search-btn">search</button>
       <div class="nav-item-ctnr"  routerLink ="/wishlist">
-        <mat-icon class="nav-item" matBadgeColor="warn"  matBadge="0" matBadgeSize="small">favorite</mat-icon>
+        <mat-icon class="nav-item" matBadgeColor="warn"  [matBadge]="wishListSize" matBadgeSize="small">favorite</mat-icon>
         <p>wishlist</p>
       </div>
-      <div class="nav-item-ctnr">
+      <div class="nav-item-ctnr" routerLink="/profile">
         <mat-icon  class="nav-item">person</mat-icon>
         <p>profile</p>
       </div>
       <div class="nav-item-ctnr" routerLink ="/cart">
-        <mat-icon  class="nav-item" matBadgeColor="warn" matBadge="1">shopping_cart</mat-icon>
+        <mat-icon  class="nav-item" matBadgeColor="warn" [matBadge]="cartListSize">shopping_cart</mat-icon>
         <p>cart</p>
       </div>
   </div>

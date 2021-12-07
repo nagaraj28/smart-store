@@ -6,6 +6,7 @@ import { ProductdetailsComponent } from './screens/product-details/productdetail
 import { CartcontainerComponent } from './screens/cart/cartcontainer/cartcontainer.component';
 import { WishlistComponent } from './screens/wishlist/wishlist.component';
 import { ProfileComponent } from './screens/profile/profile.component';
+import { ProfileModule } from './screens/profile/profile.module';
 
 
 const routes: Routes = [
@@ -26,7 +27,7 @@ const routes: Routes = [
       path:"wishlist",component:WishlistComponent
      },
      {
-      path:"profile",component:ProfileComponent
+      path:"profile",loadChildren:()=>import('./screens/profile/profile.module').then(m=>m.ProfileModule)
      },
      {
       path:"products/:productid",component:ProductdetailsComponent

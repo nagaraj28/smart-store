@@ -2,7 +2,7 @@
     <div class="form-ctnr">
         <div >
             <mat-icon class="cancel-btn" (click)="closeDialog()" >cancel</mat-icon>
-            <h3 class="dialog-header">add/update address</h3>
+            <h3 class="dialog-header">{{title}} address</h3>
         </div>
         <form class="form">
             <label class="input-label">
@@ -23,8 +23,9 @@
             <label class="input-label">
                 <input  class="input-box" type="number" placeholder="mobile"/><br/>
             </label>
-            <button class="dialog-btns">save</button>
-            <button class="dialog-btns" (click)="closeDialog()">cancel</button>
+            <button class="dialog-btns primary" *ngIf="title==='add'">add</button>
+            <button class="dialog-btns primary" *ngIf="title==='update'">update</button>
+            <button class="dialog-btns secondary" (click)="closeDialog()">cancel</button>
         </form> 
     </div>
 </div>
