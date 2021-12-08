@@ -42,10 +42,9 @@ export class AppComponent {
   productListingComponent.getWishListProducts();
   productListingComponent.getCartListProducts();
 
-
   }
   ngDoCheck():void{
-    console.log("app-ng check");
+    // console.log("app-ng check");
     this.cartListSize = this.cartListService.cartProducts.length;
     this.wishListSize = this.wishListService.wishListProducts.length;
   }

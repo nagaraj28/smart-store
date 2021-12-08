@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {URL} from 'src/config/config';
+import { HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressesService {
 
+  addressList!:any;
   isDialogOpen:boolean=false;
+  currentFormEditDetails!:any;
+
   constructor(private http:HttpClient) { }
   dialogBoxTitle:string="";
   openDialog():void{
@@ -18,7 +24,90 @@ export class AddressesService {
   setDialogTitle(value:string):void{
       this.dialogBoxTitle = value;
   }
-  getAddresses(){
+  setCurrentForm(address:any){
+    this.currentFormEditDetails = address;
+    // console.log(this.currentFormEditDetails);
   }
 
+  getAddresses(){
+     let userid:string="61a90be83a201bfb11a743db";
+     return this.http.get(URL+"ecommerceuser/getaddresses/"+userid).pipe(
+        tap((data:any)=>{
+          // console.log("addresses  ",data);
+          this.addressList = data.data[0].addresslist;
+        }),
+        catchError((err=>this.handleError(err))
+      ));
+  }
+
+  /*
+   adds new address
+  */
+
+  addAddress(addressFormValues:any):Observable<any>{
+    const headers = new HttpHeaders();
+    headers.set('Content-Type','application/json');
+    const addressBody= {
+    ...addressFormValues,
+      userid:"61a90be83a201bfb11a743db"
+    }
+    console.log(addressBody)
+     return this.http.post(URL+"ecommerceuser/addaddress",addressBody,{headers:headers}).pipe(
+        tap((data:any)=>{
+          console.log("address added successfully");
+          this.closeDialog();
+        }),
+        catchError((err=>this.handleError(err))
+      ));
+  }
+
+   /*
+   update new address
+  */
+
+   updateAddress(addressFormValues:any,addressId:string){
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    const addressBody= {
+      ...addressFormValues,
+        userid:"61a90be83a201bfb11a743db",
+        _id:addressId
+      }
+      // console.log(addressBody)
+      return this.http.put(URL+"ecommerceuser/editaddress",addressBody,{headers:headers}).pipe(
+        tap((data:any)=>{
+          console.log("address updated successfully")
+          this.closeDialog();
+        }),
+        catchError((err=>this.handleError(err))
+      ));
+  }
+
+    /*
+   delete new address
+  */
+   deleteAddress(addressId:string):Observable<any>{
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        userid: "61a90be83a201bfb11a743db",
+        _id:addressId
+      },
+    };
+
+   return   this.http.delete(URL+"ecommerceuser/deleteaddress",options).pipe(
+        tap((data:any)=>{
+          console.log("address deleted successfully")
+        }),
+        catchError((err=>this.handleError(err))
+      ));
+  }
+
+  private handleError(httpError:HttpErrorResponse):Observable<any>{
+    console.log("error in address")
+        const errorMessage = "some error occured in aadding address,please try again ";
+        return throwError(errorMessage);
+  }
 }

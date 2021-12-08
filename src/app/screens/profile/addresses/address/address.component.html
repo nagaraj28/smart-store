@@ -1,12 +1,12 @@
 <div class="addr-ctnr">
     <h4 class="name-txt">
-        John Snow
+       {{address.name}}
     </h4>
     <p>
-       #21/2,Hi-Tech city,Madhapur
+        {{address.street}}
     </p>
-    <p><span>Hyderabad</span>,<span>Telangana</span>,<span>500087</span></p>
-    <p>mobile: 9848012356</p>
-    <button class="addr-btn primary" (click)="editAddress()">edit</button>
-    <button  class="addr-btn secondary">delete</button>
+    <p><span>  {{address.city}}</span>,<span>  {{address.state}}</span>,<span>  {{address.zipcode}}</span></p>
+    <p>mobile:   {{address.phoneno}}</p>
+    <button class="addr-btn primary" (click)="editAddress(address)">edit</button>
+    <button  class="addr-btn secondary" (click)="deleteAddress(address._id)">delete</button>
 </div>

@@ -4,13 +4,13 @@
     </div>
     <div class="prof-ctnr">
         <ul class="profile-list">
-            <li class="list-item" routerLink="/profile">
+            <li class="list-item" routerLink="/profile" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
                 Profile
             </li>
-            <li class="list-item" routerLink="/profile/orders"> 
+            <li class="list-item" routerLink="/profile/orders" routerLinkActive="active-link" > 
                 Orders
             </li>
-            <li class="list-item"  routerLink="/profile/addresses">
+            <li class="list-item"  routerLink="/profile/addresses" routerLinkActive="active-link">
                 Addresses
             </li>
         </ul>
@@ -23,4 +23,4 @@
     </div>
 
 </div>
-<app-addressformdialog></app-addressformdialog>
+<app-addressformdialog *ngIf="isAddressForm" ></app-addressformdialog>

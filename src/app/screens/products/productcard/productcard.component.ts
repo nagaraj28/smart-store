@@ -24,12 +24,15 @@ export class ProductcardComponent implements OnInit {
     // console.log(this.wishListService.wishListProducts)
     // console.log(this.wishListService.wishListProducts,this.product);
     this.isWishListed = this.wishListService.wishListProducts.some((prod)=>this.product._id===prod._id);
-    this.isInCart = this.cartListService.cartProducts.some((prod)=>this.product._id===prod._id);
+    this.isInCart = this.cartListService.cartProducts.some((prod)=>this.product._id===prod.productid);
+    // console.log(this.cartListService.cartProducts,this.product._id,this.isInCart);
   }
   ngDoCheck():void{
     // this.isWishListed = this.wishListService.wishListProducts.includes(this.product);
     // this.isInCart = this.wishListService.wishListProducts.includes(this.product);
     // console.log(this.isWishListed);
+    // this.isWishListed = this.wishListService.wishListProducts.some((prod)=>this.product._id===prod._id);
+    // this.isInCart = this.cartListService.cartProducts.some((prod)=>this.product._id===prod._id);
   }
   changeColor(){
     this.isWishListed =!this.isWishListed;

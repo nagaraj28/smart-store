@@ -81,6 +81,7 @@ export class ProductlistingComponent implements OnInit {
    
 
   ngDoCheck():void	{
+    if(this.allProducts!==this.productService.modifiedProducts)
     this.allProducts=this.productService.modifiedProducts;
     // console.log(this.allProducts)
     //  console.log("hello do check")

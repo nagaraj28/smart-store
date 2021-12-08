@@ -46,7 +46,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CartlistComponent,
     CartitemComponent,
     PricedetailsComponent,
-    WishlistComponent,
+    WishlistComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,8 @@ import {MatRadioModule} from '@angular/material/radio';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

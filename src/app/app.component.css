@@ -36,6 +36,7 @@ h4{
 .nav-item-ctnr{
     padding:0 25px;
     text-align: center;
+    cursor: pointer;
 }
 .nav-item{
     font-size: 20px;
@@ -52,4 +53,11 @@ p{
 .add-space{
     position: relative;
     margin-top: 90px;
+}
+.active-link{
+    color: #2BAE66FF;
+    border-bottom: 1px solid #2BAE66FF;
+}
+.nav-link{
+    cursor: pointer;
 }

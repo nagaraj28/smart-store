@@ -11,7 +11,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class CartlistService {
   userid="61a90be83a201bfb11a743db";
-  cartProducts:Products[]=[];
+  cartProducts:any[]=[];
   constructor(private http:HttpClient) { }
   /* 
   get cart items
@@ -37,7 +37,7 @@ export class CartlistService {
     return this.http.post<Products[]>(URL+"products/productdetails",{productids:productids},{headers:headers}).pipe(
       tap((data:any)=>{
         // console.log(data);
-        this.cartProducts = data.products;
+        // this.cartProducts = data.products;
       }),
       catchError(this.handleError)
     );

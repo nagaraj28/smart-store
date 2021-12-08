@@ -8,11 +8,10 @@ import { Products } from 'src/app/screens/products/productcard/products';
   styleUrls: ['./cartlist.component.css']
 })
 export class CartlistComponent implements OnInit {
-  dummyArray:any[]=["","","",""]
   constructor(private cartlistService:CartlistService) { }
   cartProducts:Products[]=[];
   ngOnInit(): void{
-    this.getCartProducts();
+    // this.getCartProducts();
   }
   getCartProducts(){
     this.cartlistService.getCart().subscribe(
@@ -26,7 +25,11 @@ export class CartlistComponent implements OnInit {
     );
   }
   ngDoCheck():void{
-    this.cartProducts = this.cartlistService.cartProducts;
+    if(this.cartProducts!==this.cartlistService.cartProducts){
+      this.cartProducts = this.cartlistService.cartProducts;
+     console.log("do checkcartlist",this.cartProducts);
+    }
+    
   }
 
 }

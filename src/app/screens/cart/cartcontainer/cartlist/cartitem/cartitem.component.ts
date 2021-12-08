@@ -11,19 +11,19 @@ import { CartlistService } from '../cartlist.service';
 })
 export class CartitemComponent implements OnInit {
   constructor(private productDetailService:ProductdetailsService,private router:Router,private cartListService:CartlistService) { }
-  productThere!:boolean;
   @Input()product!:any;
   quantity:number=1;
   productdetail!:Products;
   totalPrice:number = 0;
   totalOfferPrice:number = 0;
-
   ngOnInit(): void {  
+    if(this.product.quantity)
     this.quantity=this.product.quantity;
+    // console.log(this.product.productid)
+    if(this.product.productid)
     this.productDetailService.getProduct(this.product.productid).subscribe(
       (data:any)=>{
         this.productdetail=data.products;
-        // this.productThere=true;
         // console.log(this.productdetail);
       },
       (err:any)=>{
@@ -31,18 +31,19 @@ export class CartitemComponent implements OnInit {
       }
     );
   }
-  // ngOnCheck():void{
-  //   this.productDetailService.getProduct(this.product.productid).subscribe(
-  //     (data:any)=>{
-  //       this.productdetail=data;
-  //       this.productThere=true;
-  //       console.log(this.productdetail);
-  //     },
-  //     (err:any)=>{
-  //       console.log("error fetching details");
-  //     }
-  //   );
-  // }
+  // ngDoCheck():void{
+
+  // //   this.productDetailService.getProduct(this.product.productid).subscribe(
+  // //     (data:any)=>{
+  // //       this.productdetail=data;
+  // //       this.productThere=true;
+  // //       console.log(this.productdetail);
+  // //     },
+  // //     (err:any)=>{
+  // //       console.log("error fetching details");
+  // //     }
+  // //   );
+  //  }
   increaseQuantity(product_id:string):void{
     if(this.quantity<3){
       this.quantity += 1;
@@ -85,18 +86,3 @@ export class CartitemComponent implements OnInit {
    }
 
 }
-// interface ProductType{
-//   displayName:string,
-//   shortDesc:string,
-//   desc:string,
-//   category:string,
-//   price:number,
-//   discount:number,
-//   deliveryCharge:number,
-//   offerPrice:number,
-//   seller:string,
-//   sellerCount:number,
-//   avgRating:number,
-//   imageURL:string,
-//   reviews:any[]
-// }

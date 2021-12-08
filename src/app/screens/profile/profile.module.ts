@@ -13,6 +13,7 @@ import { OrderComponent } from './orders/order/order.component';
 import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfileRoutingModule } from './profile-routing.module';
     MatBadgeModule,
     HttpClientModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [ProfileComponent]

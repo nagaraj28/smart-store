@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressesService } from './addresses/addresses.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private addressesService:AddressesService) { }
+  isAddressForm!:boolean;
   ngOnInit(): void {
+  }
+  ngDoCheck(){
+    this.isAddressForm = this.addressesService.isDialogOpen;
   }
 
 }
