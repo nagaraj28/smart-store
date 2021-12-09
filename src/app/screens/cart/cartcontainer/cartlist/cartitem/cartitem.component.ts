@@ -62,6 +62,7 @@ export class CartitemComponent implements OnInit {
     this.cartListService.modifyCart(productid,quantity).subscribe(
       (data:any)=>{
         console.log("cart quantity modified",data);
+        this.cartListService.getCart().subscribe();
       },
       ((err:any)=>{
         console.log("error in updating cart");

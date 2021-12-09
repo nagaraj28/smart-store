@@ -48,7 +48,11 @@
     font-size: 28px;
 }
 .qty-txt{
+    margin-top: 6px;
    padding: 0 4px;
+   font-size: 15px;
+   font-weight: 550;
+ 
 }
 button,.delete-btn{
     cursor: pointer;
@@ -57,4 +61,10 @@ button,.delete-btn{
     background-color: #fff;
     padding: 2px 10px;
     border: 2px solid rgb(207, 184, 184);
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+}
+.plus-minus-btns:hover{
+    opacity: 0.8;
 }
