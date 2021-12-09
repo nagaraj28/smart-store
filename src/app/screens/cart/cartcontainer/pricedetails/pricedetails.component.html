@@ -22,7 +22,7 @@
     
     </div>
 <div class="order-btn-ctnr">
-    <button class="order-btn">Place Order</button>
+    <button class="order-btn" [disabled]="!currentAddress" (click)="placeOrder()">Place Order</button>
 </div>
 
 </div>

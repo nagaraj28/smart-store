@@ -24,9 +24,8 @@ import { WishlistComponent } from './screens/wishlist/wishlist.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
-
-
-
+import { ProfileModule } from './screens/profile/profile.module';
+import { DeliveryaddressComponent } from './screens/cart/cartcontainer/cartlist/deliveryaddress/deliveryaddress.component';
 
 
 @NgModule({
@@ -46,7 +45,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CartlistComponent,
     CartitemComponent,
     PricedetailsComponent,
-    WishlistComponent
+    WishlistComponent,
+    DeliveryaddressComponent
     
   ],
   imports: [
@@ -59,7 +59,8 @@ import {MatRadioModule} from '@angular/material/radio';
     HttpClientModule,
     FormsModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

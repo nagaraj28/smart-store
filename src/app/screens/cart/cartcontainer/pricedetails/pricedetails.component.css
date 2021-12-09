@@ -15,3 +15,7 @@
     font-weight: bold;
     border-radius: 2px;
 }
+.order-btn:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}

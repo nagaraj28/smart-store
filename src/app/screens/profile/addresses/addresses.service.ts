@@ -8,10 +8,11 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AddressesService {
-
   addressList!:any;
   isDialogOpen:boolean=false;
   currentFormEditDetails!:any;
+  isAddressSelectedDialogOpen!:boolean;
+  addressSelectedValue!:any;
 
   constructor(private http:HttpClient) { }
   dialogBoxTitle:string="";
@@ -27,6 +28,12 @@ export class AddressesService {
   setCurrentForm(address:any){
     this.currentFormEditDetails = address;
     // console.log(this.currentFormEditDetails);
+  }
+  closeIsAddressSelectedDialog(){
+    this.isAddressSelectedDialogOpen =false;
+  }
+  openIsAddressSelectedDialog(){
+    this.isAddressSelectedDialogOpen =true;
   }
 
   getAddresses(){
@@ -105,6 +112,10 @@ export class AddressesService {
       ));
   }
 
+  setCurrentAddress(value:any){
+    this.addressSelectedValue = value;
+    console.log(this.addressSelectedValue)
+  }
   private handleError(httpError:HttpErrorResponse):Observable<any>{
     console.log("error in address")
         const errorMessage = "some error occured in aadding address,please try again ";

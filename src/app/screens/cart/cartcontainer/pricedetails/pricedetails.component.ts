@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ignoreElements } from 'rxjs';
+import { AddressesService } from 'src/app/screens/profile/addresses/addresses.service';
 import { CartlistService } from '../cartlist/cartlist.service';
 
 @Component({
@@ -9,12 +10,13 @@ import { CartlistService } from '../cartlist/cartlist.service';
 })
 export class PricedetailsComponent implements OnInit {
 
-  constructor(private cartListService:CartlistService) { }
+  constructor(private cartListService:CartlistService,private addressesService:AddressesService) { }
   cartListProductIds:any=[];
   cartListProductDetails:any=[];
   totalPrice:number=0;
   totalOfferPrice:number=0;
   totalDeliveryCharge:number=0;
+  currentAddress!:any;
   ngOnInit(): void {
     // if(this.cartListProductIds!==this.cartListService.cartProducts){
     //   this.cartListProductIds = this.cartListService.cartProducts;
@@ -30,6 +32,7 @@ export class PricedetailsComponent implements OnInit {
     if(this.cartListProductDetails!==this.cartListService.cartProductsWithDetails){
       this.cartListProductDetails = this.cartListService.cartProductsWithDetails;
     }
+    this.currentAddress = this.addressesService.addressSelectedValue;
     this.calcultePrices();
   }
 
@@ -51,6 +54,24 @@ export class PricedetailsComponent implements OnInit {
         }
       }
     }
+  }
+  placeOrder(){
+    let orderedProductDetails = [];
+    for(let cartproduct of this.cartListProductDetails){
+      for(let cartproductlistItem of this.cartListProductIds){
+        if(cartproduct._id===cartproductlistItem.productid){
+          orderedProductDetails.push({
+            offerPrice:cartproduct.offerPrice,
+            displayName:cartproduct.displayName,
+            price:cartproduct.price,
+            imageURL:cartproduct.imageURL,
+            deliveryCharge:cartproduct.deliveryCharge,
+            quantity:cartproductlistItem.quantity
+          });
+        }
+      }
+    }
+    console.log("place order",this.totalOfferPrice,orderedProductDetails);
   }
 
 }

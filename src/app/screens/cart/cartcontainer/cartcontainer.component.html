@@ -1,7 +1,10 @@
 <div>
     <h2 class="cart-heading">CART</h2>
 </div>
+<app-addresscartcontainer class="cart-ctnr-address"></app-addresscartcontainer>
 <div class="cart-ctnr">
     <app-cartlist></app-cartlist>
     <app-pricedetails></app-pricedetails>
 </div>
+<app-addressformdialog *ngIf="isAddressForm" ></app-addressformdialog>
+

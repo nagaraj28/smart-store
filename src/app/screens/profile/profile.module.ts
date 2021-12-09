@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddresscartcontainerComponent } from './addresses/addresscartcontainer/addresscartcontainer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddressformdialogComponent,
     OrdersComponent,
     OrderComponent,
+    AddresscartcontainerComponent,
   ],
   imports: [
     
@@ -34,9 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [ProfileComponent]
+  bootstrap: [ProfileComponent],
+  exports:[AddresscartcontainerComponent,AddressformdialogComponent]
 })
 export class ProfileModule { }

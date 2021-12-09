@@ -13,6 +13,7 @@ export class CartlistService {
   cartProducts: any[] = [];
   constructor(private http: HttpClient) {}
   cartProductsWithDetails:any=[]; 
+  addressToDeliver!:any;
   /* 
   get cart items
   */
