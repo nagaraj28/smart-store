@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProfileModule } from './screens/profile/profile.module';
 import { DeliveryaddressComponent } from './screens/cart/cartcontainer/cartlist/deliveryaddress/deliveryaddress.component';
+import { SearchComponent } from './screens/search/search.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DeliveryaddressComponent } from './screens/cart/cartcontainer/cartlist/
     CartitemComponent,
     PricedetailsComponent,
     WishlistComponent,
-    DeliveryaddressComponent
+    DeliveryaddressComponent,
+    SearchComponent
     
   ],
   imports: [

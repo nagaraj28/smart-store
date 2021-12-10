@@ -7,6 +7,7 @@ import { CartcontainerComponent } from './screens/cart/cartcontainer/cartcontain
 import { WishlistComponent } from './screens/wishlist/wishlist.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { ProfileModule } from './screens/profile/profile.module';
+import { SearchComponent } from './screens/search/search.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,9 @@ const routes: Routes = [
      },
      {
       path:"products/:productid",component:ProductdetailsComponent
+     },
+     {
+       path:"search",component:SearchComponent
      }
 ];
 

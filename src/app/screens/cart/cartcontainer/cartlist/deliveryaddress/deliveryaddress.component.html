@@ -1,4 +1,4 @@
-<div class="addr-ctnr" *ngIf="currentAddress">
+<div class="addr-ctnr" *ngIf="currentAddress && cartList&& cartList.length>0">
     <div>
         <h4 class="name-txt">
             {{currentAddress.name}}

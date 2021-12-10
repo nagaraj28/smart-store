@@ -78,7 +78,7 @@ export class CartitemComponent implements OnInit {
      this.cartListService.removeFromCart(productid).subscribe(
        (data:any)=>{
         console.log("remove success",data);
-        this.cartListService.getCart().subscribe(data=>console.log("uodated data",data));
+        this.cartListService.getCart().subscribe(data=>console.log("updated data",data));
        },
        (err:any)=>{
          console.log("something went wrong in deleting the cart",err);

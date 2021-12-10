@@ -11,9 +11,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class CartlistService {
   userid = '61a90be83a201bfb11a743db';
   cartProducts: any[] = [];
-  constructor(private http: HttpClient) {}
   cartProductsWithDetails:any=[]; 
   addressToDeliver!:any;
+  constructor(private http: HttpClient) {}
+  
   /* 
   get cart items
   */
@@ -24,6 +25,9 @@ export class CartlistService {
       .pipe(
         tap((data: any) => {
           // console.log(data);
+          if(data.data && data.data.length<=0)
+          this.cartProducts =[];
+          else
           this.cartProducts = data.data[0].cartproducts;
         }),
         catchError(this.handleError)
@@ -80,7 +84,6 @@ export class CartlistService {
   /*
     modify item to cart
     */
-
   modifyCart(data: string, quantity: number): Observable<any> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -100,9 +103,26 @@ export class CartlistService {
       );
   }
 
+  /*
+  delete all items from cart
+  */
+  deleteAllProductsFromCart():Observable<any>{
+    const userid = '61a90be83a201bfb11a743db';
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+  return  this.http.delete<any>(URL+"ecommerceuser/deleteallcart/"+userid, options).pipe(
+      tap((data:any)=>{
+        console.log("all items deleted from cart after placing order...");
+      }),
+      catchError(this.handleError)
+    );
+  }
   private handleError(httpError: HttpErrorResponse): Observable<any> {
-    const errorMessage =
-      'some error occured in modifying cart product,please refresh ';
+    console.log(httpError);
+    const errorMessage ='some error occured in modifying cart product,please refresh ';
     return throwError(errorMessage);
   }
 }

@@ -17,12 +17,8 @@ export class ProductlistingComponent implements OnInit {
   ngOnInit(): void {
     console.log("hello do init");
     let dataIds!:any;
-
-    
     this.getCartListProducts();
     this.getWishListProducts();
- 
-    
 // this.getAllProducts();
 // this.allProducts=this.productService.modifiedProducts;
   }
@@ -43,6 +39,7 @@ export class ProductlistingComponent implements OnInit {
   getCartListProducts(){
     this.cartListService.getCart().subscribe((data:any)=>{
       console.log(data.data[0])
+      if(data.data&&data.data.length>0)
       this.cartListService.getCartlistProducts(data.data[0].cartproducts).subscribe(
         (data:any)=>{
           console.log("fetch cartlist data");
@@ -67,7 +64,9 @@ export class ProductlistingComponent implements OnInit {
         // console.log(this.allProducts)
         //gets all the products for shop page
         this.getAllProducts();
-        this.allProducts=this.productService.modifiedProducts;
+        this.allProducts=this.productService.actualProducts;
+        //changed during search build
+        // this.allProducts = this.productService.modifiedProducts;
       },
       (err:any)=>{
         console.log("error in getting wishlist products")

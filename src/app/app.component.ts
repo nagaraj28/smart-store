@@ -3,6 +3,7 @@ import { CartlistService } from './screens/cart/cartcontainer/cartlist/cartlist.
 import { WishlistService } from './screens/wishlist/wishlist.service';
 import { ProductlistingComponent } from './screens/products/productlisting/productlisting.component';
 import { ProductsService } from './screens/products/productcard/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root', 
@@ -12,7 +13,8 @@ import { ProductsService } from './screens/products/productcard/products.service
 export class AppComponent {
   wishListSize:number=0;
   cartListSize:number=0;
-  constructor(private cartListService:CartlistService,private wishListService:WishlistService,private productService:ProductsService){}
+  searchValue:string="";
+  constructor(private cartListService:CartlistService,private wishListService:WishlistService,private productService:ProductsService,private router:Router){}
 
   ngOnInit():void{
 
@@ -47,5 +49,8 @@ export class AppComponent {
     // console.log("app-ng check");
     this.cartListSize = this.cartListService.cartProducts.length;
     this.wishListSize = this.wishListService.wishListProducts.length;
+  }
+  findProducts(){
+    this.router.navigate(["/search"],{queryParams:{searchvalue:this.searchValue}});
   }
 }

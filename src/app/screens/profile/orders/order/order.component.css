@@ -30,3 +30,9 @@
 .price-desc{
     display: flex;
 }
+
+.order-confirm-txt{
+    color: green;
+    font-size: 15px;
+    font-weight: bold;
+}

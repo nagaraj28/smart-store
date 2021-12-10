@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ignoreElements } from 'rxjs';
 import { AddressesService } from 'src/app/screens/profile/addresses/addresses.service';
+import { OrdersService } from 'src/app/screens/profile/orders/orders.service';
 import { CartlistService } from '../cartlist/cartlist.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { CartlistService } from '../cartlist/cartlist.service';
 })
 export class PricedetailsComponent implements OnInit {
 
-  constructor(private cartListService:CartlistService,private addressesService:AddressesService) { }
+  constructor(private cartListService:CartlistService,private addressesService:AddressesService,private ordersService:OrdersService) { }
   cartListProductIds:any=[];
   cartListProductDetails:any=[];
   totalPrice:number=0;
@@ -66,12 +67,40 @@ export class PricedetailsComponent implements OnInit {
             price:cartproduct.price,
             imageURL:cartproduct.imageURL,
             deliveryCharge:cartproduct.deliveryCharge,
-            quantity:cartproductlistItem.quantity
+            quantity:cartproductlistItem.quantity,
+            productid:cartproductlistItem.productid
           });
         }
       }
     }
-    console.log("place order",this.totalOfferPrice,orderedProductDetails);
+    // console.log("place order",this.addressesService.addressSelectedValue,this.totalOfferPrice,orderedProductDetails);
+    this.ordersService.placeOrder(this.addressesService.addressSelectedValue,orderedProductDetails).subscribe(
+      (data:any)=>{
+        console.log("order placed successfully...",data);
+        this.cartListService.deleteAllProductsFromCart().subscribe(
+          (data:any)=>{
+            console.log("remove success",data);
+            this.cartListService.getCart().subscribe(data=>console.log("updated data",data));
+           },
+           (err:any)=>{
+             console.log("something went wrong in deleting the cart",err);
+           }
+          // (data:any)=>{
+          //   console.log("data successfuuly deleted from cart",data);
+          //   this.cartListService.getCart().subscribe(
+          //     data=>console.log("updated data",data),
+          //     err=>console.log("erro updating cartlist",err)
+          //     );
+          //  },
+          //  (err:any)=>{
+          //    console.log("something went wrong in deleting all from cart",err);
+          //  }
+        );
+      },
+      (err:any)=>{
+        console.log("error placing order",err);
+      }
+    );
   }
 
 }
