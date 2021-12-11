@@ -27,6 +27,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ProfileModule } from './screens/profile/profile.module';
 import { DeliveryaddressComponent } from './screens/cart/cartcontainer/cartlist/deliveryaddress/deliveryaddress.component';
 import { SearchComponent } from './screens/search/search.component';
+import { LoginComponent } from './screens/login/login.component';
+import { SignupComponent } from './screens/signup/signup.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { SearchComponent } from './screens/search/search.component';
     PricedetailsComponent,
     WishlistComponent,
     DeliveryaddressComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    SignupComponent
     
   ],
   imports: [

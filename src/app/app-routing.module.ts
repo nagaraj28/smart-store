@@ -8,6 +8,8 @@ import { WishlistComponent } from './screens/wishlist/wishlist.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { ProfileModule } from './screens/profile/profile.module';
 import { SearchComponent } from './screens/search/search.component';
+import { LoginComponent } from './screens/login/login.component';
+import { SignupComponent } from './screens/signup/signup.component';
 
 
 const routes: Routes = [
@@ -35,7 +37,13 @@ const routes: Routes = [
      },
      {
        path:"search",component:SearchComponent
-     }
+     },
+     {
+      path:"login",component:LoginComponent
+    },
+    {
+      path:"signup",component:SignupComponent
+    }
 ];
 
 @NgModule({

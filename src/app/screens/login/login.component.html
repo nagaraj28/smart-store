@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Register</h2>
+    <form [formGroup]="loginForm"(submit)="login()">
+        <label>
+        Email
+        <input type="email" formControlName="email"  placeholder="enter email address"/>
+    </label>
+        <label>
+        Password
+        <input type="password" formControlName="password"  placeholder="enter your password"/>
+        </label>
+        <button [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>
