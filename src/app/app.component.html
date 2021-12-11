@@ -4,8 +4,11 @@
     <li  class="nav-link" routerLink="/products" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4>Shop Now</h4></li>
   </ul>
   <div class="second-ctnr">
-    <input class="search-bar" type="search" placeholder="Search for a product" [(ngModel)]="searchValue">
-    <button class="search-btn" (click)="findProducts()">search</button>
+    <div class="search-ctnr">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input class="search-bar" type="search" placeholder="Search for a product" [(ngModel)]="searchValue" (keyup.enter)="findProducts()">
+    </div>
+    <!-- <button class="search-btn" (click)="findProducts()">search</button> -->
       <div class="nav-item-ctnr"  routerLink ="/wishlist" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon class="nav-item" matBadgeColor="warn"  [matBadge]="wishListSize" matBadgeSize="small">favorite</mat-icon>
         <p>wishlist</p>
