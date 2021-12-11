@@ -83,7 +83,7 @@ export class CartitemComponent implements OnInit {
        (err:any)=>{
          console.log("something went wrong in deleting the cart",err);
        }
-     )
+     );
    }
 
 }
