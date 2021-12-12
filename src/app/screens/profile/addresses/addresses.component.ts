@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../login/login.service';
 import { AddressesService } from './addresses.service';
 
 @Component({
@@ -8,14 +9,20 @@ import { AddressesService } from './addresses.service';
 })
 export class AddressesComponent implements OnInit {
 
-  constructor(private addressesService:AddressesService) { }
+  constructor(private addressesService:AddressesService,private loginService:LoginService) { }
   addressList!:any;
+  loggedUser!:any;
 
   ngOnInit(): void {
-    this.getAddresses();
-    this.addressList = this.addressesService.addressList;
+    
   }
   ngDoCheck(){
+    if(this.loggedUser !== this.loginService.loggedUserDetails){
+      this.loggedUser = this.loginService.loggedUserDetails;
+      if(this.loggedUser?.userid){
+        this.getAddresses(this.loggedUser.userid);
+      }
+    }
     this.addressList = this.addressesService.addressList;
   }
 
@@ -24,8 +31,8 @@ export class AddressesComponent implements OnInit {
     this.addressesService.setDialogTitle("add");
     this.addressesService.openDialog();
   }
-  getAddresses(){
-    this.addressesService.getAddresses().subscribe((data:any)=>{
+  getAddresses(userid:string){
+    this.addressesService.getAddresses(userid).subscribe((data:any)=>{
       this.addressList = data.data[0].addresslist;
     },
     (err:any)=>{

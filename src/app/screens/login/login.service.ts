@@ -9,6 +9,7 @@ import {URL} from "src/config/config";
 export class LoginService {
 
   constructor(private http:HttpClient) { }
+  loggedUserDetails!:any;
   /* 
   login 
   */
@@ -39,11 +40,22 @@ export class LoginService {
   */
   validateToken(token:any):Observable<any>{
      const headers = new HttpHeaders();
-     headers.set('Content-Type',"application/json");
-     headers.set("x-auth-token",token);
-    return this.http.get<any>(URL+"users/tokenvalid").pipe(
+     const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'x-auth-token':token
+      })
+    }
+    //  console.log(headers);
+    return this.http.get<any>(URL+"users/tokenvalid",options).pipe(
       tap((data:any)=>{
-        console.log("token validation successful")
+        // console.log("token validation successful",data);
+        if(data.userid){
+          this.loggedUserDetails = data;
+        }
+        else{
+          localStorage.removeItem("x-auth-token");
+        }
       }),
      catchError(this.handleError)
     );

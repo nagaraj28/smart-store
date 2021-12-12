@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddressesService } from '../addresses.service';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { AddressesComponent } from '../addresses.component';
+import { LoginService } from 'src/app/screens/login/login.service';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { AddressesComponent } from '../addresses.component';
 })
 export class AddressformdialogComponent implements OnInit {
   isDialogOpen:boolean=false;
+  loggedUser!:any;
   currentFormAddress!:any;
-  constructor(private addressesService:AddressesService,private formBuilder:FormBuilder) { }
+  constructor(private addressesService:AddressesService,private formBuilder:FormBuilder,private loginService:LoginService) { }
   title!:string;
   addressForm!: FormGroup;
   ngOnInit(): void {
@@ -33,30 +35,31 @@ export class AddressformdialogComponent implements OnInit {
   ngDoCheck():void{
     this.isDialogOpen = this.addressesService.isDialogOpen;
     this.title = this.addressesService.dialogBoxTitle;
+    this.loggedUser = this.loginService.loggedUserDetails;
   }
   closeDialog(){
     this.addressesService.closeDialog();
   }
 
-  addAddress(){
+  addAddress(userid:string){
       console.log("add address",this.addressForm.value);
       const addressObj = this.addressForm.value;
-      this.addressesService.addAddress(addressObj).subscribe(
+      this.addressesService.addAddress(addressObj,userid).subscribe(
         (data:any)=>{
           console.log("address added" );
-          let addressesComponent = new AddressesComponent(this.addressesService);
-          addressesComponent.getAddresses();
+          let addressesComponent = new AddressesComponent(this.addressesService,this.loginService);
+          addressesComponent.getAddresses(userid);
         },
         (err:any)=>{
           console.log("error adding address");
         });
   }
-  updateAddress(addressId:string){
+  updateAddress(addressId:string,userid:string){
     // console.log("update address",this.addressForm.value);
-    this.addressesService.updateAddress(this.addressForm.value,addressId).subscribe((data:any)=>{
+    this.addressesService.updateAddress(this.addressForm.value,addressId,this.loggedUser.userid).subscribe((data:any)=>{
       console.log("address updated!");
-      let addressesComponent = new AddressesComponent(this.addressesService);
-      addressesComponent.getAddresses();
+      let addressesComponent = new AddressesComponent(this.addressesService,this.loginService);
+      addressesComponent.getAddresses(userid);
     },
     (err:any)=>{
       console.log(err);

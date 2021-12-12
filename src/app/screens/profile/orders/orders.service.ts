@@ -12,8 +12,7 @@ export class OrdersService {
   /*
  get all the orders
  */
- getAllOrders():Observable<any>{
-  const userid = "61a90be83a201bfb11a743db";
+ getAllOrders(userid:string):Observable<any>{
   return this.http.get<any>(URL+"ecommerceuser/getorders/"+userid).pipe(
     tap((data:any)=>{
       console.log("fetch all the orders",data);
@@ -22,14 +21,13 @@ export class OrdersService {
   );
  }
 
-
   /* 
   place order 
   */
-  placeOrder(addressDelivered:any,orderedProducts:any):Observable<any[]>{
+  placeOrder(addressDelivered:any,orderedProducts:any,userid:string):Observable<any[]>{
     const headers = new HttpHeaders();
     headers.set('Content-Type','application/json');
-    const userId="61a90be83a201bfb11a743db";
+    const userId=userid;
     const body = {
       userid:userId,
       products:orderedProducts,

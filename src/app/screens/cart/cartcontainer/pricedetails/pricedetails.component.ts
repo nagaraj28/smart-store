@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ignoreElements } from 'rxjs';
+import { LoginService } from 'src/app/screens/login/login.service';
 import { AddressesService } from 'src/app/screens/profile/addresses/addresses.service';
 import { OrdersService } from 'src/app/screens/profile/orders/orders.service';
 import { CartlistService } from '../cartlist/cartlist.service';
@@ -11,13 +12,15 @@ import { CartlistService } from '../cartlist/cartlist.service';
 })
 export class PricedetailsComponent implements OnInit {
 
-  constructor(private cartListService:CartlistService,private addressesService:AddressesService,private ordersService:OrdersService) { }
+  constructor(private cartListService:CartlistService,private addressesService:AddressesService,private ordersService:OrdersService,
+    private loginService:LoginService) { }
   cartListProductIds:any=[];
   cartListProductDetails:any=[];
   totalPrice:number=0;
   totalOfferPrice:number=0;
   totalDeliveryCharge:number=0;
   currentAddress!:any;
+  loggedUser!:any;
   ngOnInit(): void {
     // if(this.cartListProductIds!==this.cartListService.cartProducts){
     //   this.cartListProductIds = this.cartListService.cartProducts;
@@ -32,6 +35,9 @@ export class PricedetailsComponent implements OnInit {
     }
     if(this.cartListProductDetails!==this.cartListService.cartProductsWithDetails){
       this.cartListProductDetails = this.cartListService.cartProductsWithDetails;
+    }
+    if(this.loggedUser!==this.loginService.loggedUserDetails){
+      this.loggedUser = this.loginService.loggedUserDetails;
     }
     this.currentAddress = this.addressesService.addressSelectedValue;
     this.calcultePrices();
@@ -74,13 +80,13 @@ export class PricedetailsComponent implements OnInit {
       }
     }
     // console.log("place order",this.addressesService.addressSelectedValue,this.totalOfferPrice,orderedProductDetails);
-    this.ordersService.placeOrder(this.addressesService.addressSelectedValue,orderedProductDetails).subscribe(
+    this.ordersService.placeOrder(this.addressesService.addressSelectedValue,orderedProductDetails,this.loggedUser.userid).subscribe(
       (data:any)=>{
         console.log("order placed successfully...",data);
-        this.cartListService.deleteAllProductsFromCart().subscribe(
+        this.cartListService.deleteAllProductsFromCart(this.loginService.loggedUserDetails.userid).subscribe(
           (data:any)=>{
             console.log("remove success",data);
-            this.cartListService.getCart().subscribe(data=>console.log("updated data",data));
+            this.cartListService.getCart(this.loginService.loggedUserDetails.userid).subscribe(data=>console.log("updated data",data));
            },
            (err:any)=>{
              console.log("something went wrong in deleting the cart",err);
@@ -102,5 +108,4 @@ export class PricedetailsComponent implements OnInit {
       }
     );
   }
-
 }

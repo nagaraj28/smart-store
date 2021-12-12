@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartlistService {
-  userid = '61a90be83a201bfb11a743db';
+  // userid = '61a90be83a201bfb11a743db';
   cartProducts: any[] = [];
   cartProductsWithDetails:any=[]; 
   addressToDeliver!:any;
@@ -19,9 +19,9 @@ export class CartlistService {
   get cart items
   */
 
-  getCart(): Observable<Products[]> {
+  getCart(userid:string): Observable<Products[]> {
     return this.http
-      .get<Products[]>(URL + 'ecommerceuser/getcart/' + this.userid)
+      .get<Products[]>(URL + 'ecommerceuser/getcart/' + userid)
       .pipe(
         tap((data: any) => {
           // console.log(data);
@@ -60,13 +60,13 @@ export class CartlistService {
   /*
     remove item to cart
     */
-  removeFromCart(productid: string): Observable<any> {
+  removeFromCart(productid: string,userid:string): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
       body: {
-        userid: '61a90be83a201bfb11a743db',
+        userid: userid,
         productid: productid,
       },
     };
@@ -84,11 +84,11 @@ export class CartlistService {
   /*
     modify item to cart
     */
-  modifyCart(data: string, quantity: number): Observable<any> {
+  modifyCart(data: string, quantity: number,userid:string): Observable<any> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8');
     const body = {
-      userid: '61a90be83a201bfb11a743db',
+      userid: userid,
       productid: data,
       quantity: quantity,
     };
@@ -106,8 +106,7 @@ export class CartlistService {
   /*
   delete all items from cart
   */
-  deleteAllProductsFromCart():Observable<any>{
-    const userid = '61a90be83a201bfb11a743db';
+  deleteAllProductsFromCart(userid:string):Observable<any>{
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

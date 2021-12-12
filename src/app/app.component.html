@@ -15,7 +15,8 @@
       </div>
       <div class="nav-item-ctnr" routerLink="/profile" routerLinkActive="active-link" >
         <mat-icon  class="nav-item">person</mat-icon>
-        <p>profile</p>
+        <p *ngIf="loggedUser?.username">Hey,{{loggedUser.username}}</p>
+        <p *ngIf="!loggedUser?.username">not logged</p>
       </div>
       <div class="nav-item-ctnr" routerLink ="/cart" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
         <mat-icon  class="nav-item" matBadgeColor="warn" [matBadge]="cartListSize">shopping_cart</mat-icon>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartlistService } from '../../cart/cartcontainer/cartlist/cartlist.service';
+import { LoginService } from '../../login/login.service';
 import { WishlistService } from '../../wishlist/wishlist.service';
 import { Products } from '../productcard/products';
 import { ProductsService } from '../productcard/products.service';
@@ -11,17 +12,37 @@ import { ProductsService } from '../productcard/products.service';
 })
 export class ProductlistingComponent implements OnInit {
   constructor(private productService:ProductsService,private wishListService:WishlistService,
-  private cartListService:CartlistService) { }
+  private cartListService:CartlistService,private loginService:LoginService) { }
   allProducts!:Products[];
   // wishlistProducts!:Products[];
   ngOnInit(): void {
     console.log("hello do init");
     let dataIds!:any;
-    this.getCartListProducts();
-    this.getWishListProducts();
-// this.getAllProducts();
+    // this.getCartListProducts();
+    // this.getWishListProducts();
+    if(this.loginService.loggedUserDetails?.userid){
+      console.log("calls wishlist and cartlsit");
+       this.getCartListProducts(this.loginService.loggedUserDetails.userid);
+    this.getWishListProducts(this.loginService.loggedUserDetails.userid);
+    }
+    else{
+      this.getAllProducts();
+    }
 // this.allProducts=this.productService.modifiedProducts;
   }
+
+  
+  ngDoCheck():void	{
+    if(this.allProducts!==this.productService.modifiedProducts)
+    this.allProducts=this.productService.modifiedProducts;
+    // console.log(this.allProducts)
+    //  console.log("hello do check")
+    // this.wishListService.getWishlist().subscribe((data:any)=>{
+    //   this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
+    //   })
+    // });
+  }
+
   getAllProducts(){
     this.productService.getAllProducts().subscribe(
       (data:any)=>{
@@ -36,8 +57,8 @@ export class ProductlistingComponent implements OnInit {
   /*
     get cartlist products
     */
-  getCartListProducts(){
-    this.cartListService.getCart().subscribe((data:any)=>{
+  getCartListProducts(userid:string){
+    this.cartListService.getCart(userid).subscribe((data:any)=>{
       console.log(data.data[0])
       if(data.data&&data.data.length>0)
       this.cartListService.getCartlistProducts(data.data[0].cartproducts).subscribe(
@@ -56,9 +77,9 @@ export class ProductlistingComponent implements OnInit {
      /*
     get wishlist products
     */
-   getWishListProducts(){
-    this.wishListService.getWishlist().subscribe((data:any)=>{
-      this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
+   getWishListProducts(userid:string){
+    this.wishListService.getWishlist(userid).subscribe((data:any)=>{
+      if(data.data?.length>0){   this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
         // this.wishlistProducts=data.products;
         //  console.log("wishlist",data);
         // console.log(this.allProducts)
@@ -70,23 +91,13 @@ export class ProductlistingComponent implements OnInit {
       },
       (err:any)=>{
         console.log("error in getting wishlist products")
-      });
+      });}
+      else{      
+        this.getAllProducts();
+}
     },
     (err:any)=>{
       console.log("error in getting wishlist products id's")
     });
    }
-  
-   
-
-  ngDoCheck():void	{
-    if(this.allProducts!==this.productService.modifiedProducts)
-    this.allProducts=this.productService.modifiedProducts;
-    // console.log(this.allProducts)
-    //  console.log("hello do check")
-    // this.wishListService.getWishlist().subscribe((data:any)=>{
-    //   this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
-    //   })
-    // });
-  }
 }

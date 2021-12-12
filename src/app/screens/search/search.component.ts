@@ -5,6 +5,7 @@ import { WishlistService } from '../wishlist/wishlist.service';
 import { Products } from '../products/productcard/products';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from './search.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-search',
@@ -13,14 +14,18 @@ import { SearchService } from './search.service';
 })
 export class SearchComponent implements OnInit {
   constructor(private productService:ProductsService,private wishListService:WishlistService,
-    private cartListService:CartlistService,private activatedRoute:ActivatedRoute,private searchService:SearchService) { }
+    private cartListService:CartlistService,private activatedRoute:ActivatedRoute,private searchService:SearchService,
+    private loginService:LoginService) { }
     allProducts!:Products[];
     // wishlistProducts!:Products[];
     ngOnInit(): void {
       console.log("hello do init");
       let dataIds!:any;
-      this.getCartListProducts();
-      this.getWishListProducts();
+      if(this.loginService.loggedUserDetails?.userid){
+        this.getCartListProducts(this.loginService.loggedUserDetails.userid);
+        this.getWishListProducts(this.loginService.loggedUserDetails.userid);
+      }
+     
       // this.getAllProducts();
      // this.allProducts=this.productService.modifiedProducts;
     //  console.log(this.activatedRoute.snapshot.queryParams);
@@ -53,8 +58,8 @@ export class SearchComponent implements OnInit {
     /*
       get cartlist products
       */
-    getCartListProducts(){
-      this.cartListService.getCart().subscribe((data:any)=>{
+    getCartListProducts(userid:string){
+      this.cartListService.getCart(userid).subscribe((data:any)=>{
         console.log(data.data[0])
         if(data.data&&data.data.length>0)
         this.cartListService.getCartlistProducts(data.data[0].cartproducts).subscribe(
@@ -73,8 +78,8 @@ export class SearchComponent implements OnInit {
        /*
       get wishlist products
       */
-     getWishListProducts(){
-      this.wishListService.getWishlist().subscribe((data:any)=>{
+     getWishListProducts(userid:string){
+      this.wishListService.getWishlist(userid).subscribe((data:any)=>{
         this.wishListService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
           // this.wishlistProducts=data.products;
           //  console.log("wishlist",data);
@@ -110,7 +115,4 @@ export class SearchComponent implements OnInit {
           console.log("error fetching data");
         })
       }
-  
-
-
 }

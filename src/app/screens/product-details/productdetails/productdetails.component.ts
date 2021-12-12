@@ -8,6 +8,7 @@ import { WishlistService } from '../../wishlist/wishlist.service';
 import { CartlistService } from '../../cart/cartcontainer/cartlist/cartlist.service';
 import { ProductsService } from '../../products/productcard/products.service';
 import { CartitemComponent } from '../../cart/cartcontainer/cartlist/cartitem/cartitem.component';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -17,7 +18,8 @@ import { CartitemComponent } from '../../cart/cartcontainer/cartlist/cartitem/ca
 export class ProductdetailsComponent implements OnInit {
 
   constructor(private productDetailService:ProductdetailsService,private router:Router,private route: ActivatedRoute,
-    private wishlistService:WishlistService,private cartListService:CartlistService,private productsService:ProductsService
+    private wishlistService:WishlistService,private cartListService:CartlistService,private productsService:ProductsService,
+    private loginService:LoginService
     ) { }
   productThere!:boolean;
   product!:Products;
@@ -40,14 +42,21 @@ export class ProductdetailsComponent implements OnInit {
         console.log("error fetching details");
       }
     );
+    if(this.loginService.loggedUserDetails.userid){
+      this.getCartProducts(productId,this.loginService.loggedUserDetails.userid);
+    this.getWishListProducts(productId,this.loginService.loggedUserDetails.userid);
+    }
     // const val:any = 
     //  console.log("local item",localStorage.getItem("currentProduct"));
     
-    /*
+
+  }
+  getCartProducts(productId:string,userid:string){
+      /*
     get cartlist products
     */
     if(productId)
-    this.cartListService.getCart().subscribe((data:any)=>{
+    this.cartListService.getCart(userid).subscribe((data:any)=>{
       console.log(data.data[0])
       this.cartListService.getCartlistProducts(data.data[0].cartproducts).subscribe(
         (data:any)=>{
@@ -61,11 +70,15 @@ export class ProductdetailsComponent implements OnInit {
     }, (err:any)=>{
       console.log("error in getting cartlist products id's")
     });
+  }
+
+  getWishListProducts(productId:string,userid:string){
+      
     /*
     get wishlist products
     */
     if(productId)
-    this.wishlistService.getWishlist().subscribe((data:any)=>{
+    this.wishlistService.getWishlist(userid).subscribe((data:any)=>{
       this.wishlistService.getWishlistProducts(data.data[0].wishlistproducts).subscribe((data:any)=>{
         // this.wishlistProducts=data.products;
         //  console.log("wishlist",data);
@@ -81,6 +94,7 @@ export class ProductdetailsComponent implements OnInit {
       console.log("error in getting wishlist products id's")
     });
   }
+
   changeQuantity(value:string):void{
     this.quantity=parseInt(value);
     console.log(this.quantity);
@@ -90,7 +104,7 @@ export class ProductdetailsComponent implements OnInit {
     console.log(this.giveRating);
   }
   addToCart(productid:string){
-    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService);
+    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService,this.loginService);
     productCardComponent.addToCart(productid);
     this.isItemsThereInCart=true;
     // this.searchService.addItemIntoCart(data).subscribe(
@@ -106,7 +120,7 @@ export class ProductdetailsComponent implements OnInit {
     this.router.navigate(["./cart"])
   }
   addToWishList(productid:string){
-    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService);
+    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService,this.loginService);
     productCardComponent.addToWishlist(productid);
     this.isItemsThereInWishList=true;
     let data={};
@@ -120,7 +134,7 @@ export class ProductdetailsComponent implements OnInit {
     // )
   }
   removeFromWishList(productid:string){
-    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService);
+    let productCardComponent = new ProductcardComponent(this.productsService,this.router,this.wishlistService,this.cartListService,this.loginService);
     productCardComponent.removeFromWishlist(productid)
   }
   // removeFromCart(){

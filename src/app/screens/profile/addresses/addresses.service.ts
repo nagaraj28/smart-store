@@ -36,8 +36,7 @@ export class AddressesService {
     this.isAddressSelectedDialogOpen =true;
   }
 
-  getAddresses(){
-     let userid:string="61a90be83a201bfb11a743db";
+  getAddresses(userid:string){
      return this.http.get(URL+"ecommerceuser/getaddresses/"+userid).pipe(
         tap((data:any)=>{
           // console.log("addresses  ",data);
@@ -51,12 +50,12 @@ export class AddressesService {
    adds new address
   */
 
-  addAddress(addressFormValues:any):Observable<any>{
+  addAddress(addressFormValues:any,userid:string):Observable<any>{
     const headers = new HttpHeaders();
     headers.set('Content-Type','application/json');
     const addressBody= {
     ...addressFormValues,
-      userid:"61a90be83a201bfb11a743db"
+      userid:userid
     }
     console.log(addressBody)
      return this.http.post(URL+"ecommerceuser/addaddress",addressBody,{headers:headers}).pipe(
@@ -72,12 +71,12 @@ export class AddressesService {
    update new address
   */
 
-   updateAddress(addressFormValues:any,addressId:string){
+   updateAddress(addressFormValues:any,addressId:string,userid:string){
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
     const addressBody= {
       ...addressFormValues,
-        userid:"61a90be83a201bfb11a743db",
+        userid:userid,
         _id:addressId
       }
       // console.log(addressBody)
@@ -93,13 +92,13 @@ export class AddressesService {
     /*
    delete new address
   */
-   deleteAddress(addressId:string):Observable<any>{
+   deleteAddress(addressId:string,userid:string):Observable<any>{
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
       body: {
-        userid: "61a90be83a201bfb11a743db",
+        userid: userid,
         _id:addressId
       },
     };

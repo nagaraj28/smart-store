@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartlistService } from './cartlist.service';
 import { Products } from 'src/app/screens/products/productcard/products';
+import { WishlistService } from 'src/app/screens/wishlist/wishlist.service';
+import { ProductsService } from 'src/app/screens/products/productcard/products.service';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/screens/login/login.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-cartlist',
@@ -8,13 +13,37 @@ import { Products } from 'src/app/screens/products/productcard/products';
   styleUrls: ['./cartlist.component.css']
 })
 export class CartlistComponent implements OnInit {
-  constructor(private cartlistService:CartlistService) { }
+  constructor(private cartlistService:CartlistService,private wishlistService:WishlistService,private productService:ProductsService,
+    private router:Router,private loginService:LoginService) { }
   cartProducts:Products[]=[];
   ngOnInit(): void{
-    // this.getCartProducts();
+    if(this.loginService.loggedUserDetails?.userid){
+      /*  get cartlist products */
+         this.getCartProducts(this.loginService.loggedUserDetails.userid);
+         }
+         else{
+           const token = localStorage.getItem("x-auth-token");
+           if(token){
+             let appComponent = new AppComponent(this.cartlistService,this.wishlistService,this.productService,this.router,this.loginService);
+             appComponent.performTokenValidation(token);
+             if(this.loginService.loggedUserDetails?.userid)
+             this.getCartProducts(this.loginService.loggedUserDetails.userid);
+             else
+             this.router.navigate(["/login"]);
+           }
+           else{
+             this.router.navigate(["/login"]);
+           }
+         }
   }
-  getCartProducts(){
-    this.cartlistService.getCart().subscribe(
+  ngDoCheck():void{
+    if(this.cartProducts!==this.cartlistService.cartProducts){
+      this.cartProducts = this.cartlistService.cartProducts;
+     console.log("do checkcartlist",this.cartProducts);
+    } 
+  }
+  getCartProducts(userid:string){
+    this.cartlistService.getCart(userid).subscribe(
       (data:any)=>{
       this.cartProducts = data.data[0].cartproducts;
       //  console.log(this.cartProducts);
@@ -24,12 +53,4 @@ export class CartlistComponent implements OnInit {
     }
     );
   }
-  ngDoCheck():void{
-    if(this.cartProducts!==this.cartlistService.cartProducts){
-      this.cartProducts = this.cartlistService.cartProducts;
-     console.log("do checkcartlist",this.cartProducts);
-    }
-    
-  }
-
 }

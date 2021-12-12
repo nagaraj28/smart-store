@@ -72,8 +72,8 @@
             class="alert alert-danger">
                This field is required!
           </p>
-            <button class="dialog-btns primary" *ngIf="title==='add'" [disabled]="addressForm.invalid" (click)="addAddress()">add</button>
-            <button class="dialog-btns primary" *ngIf="title==='update'" [disabled]="addressForm.invalid" (click)="updateAddress(currentFormAddress._id)">update</button>
+            <button class="dialog-btns primary" *ngIf="title==='add'" [disabled]="addressForm.invalid" (click)="addAddress(loggedUser.userid)">add</button>
+            <button class="dialog-btns primary" *ngIf="title==='update'" [disabled]="addressForm.invalid" (click)="updateAddress(currentFormAddress._id,loggedUser.userid)">update</button>
             <button class="dialog-btns secondary" (click)="closeDialog()">cancel</button>
         </form> 
     </div>

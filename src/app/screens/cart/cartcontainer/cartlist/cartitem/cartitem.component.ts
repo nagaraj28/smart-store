@@ -3,6 +3,7 @@ import { ProductdetailsService } from 'src/app/screens/product-details/productde
 import { Router } from '@angular/router';
 import { Products } from 'src/app/screens/products/productcard/products';
 import { CartlistService } from '../cartlist.service';
+import { LoginService } from 'src/app/screens/login/login.service';
 
 @Component({
   selector: 'app-cartitem',
@@ -10,7 +11,7 @@ import { CartlistService } from '../cartlist.service';
   styleUrls: ['./cartitem.component.css']
 })
 export class CartitemComponent implements OnInit {
-  constructor(private productDetailService:ProductdetailsService,private router:Router,private cartListService:CartlistService) { }
+  constructor(private productDetailService:ProductdetailsService,private router:Router,private cartListService:CartlistService,private loginService:LoginService) { }
   @Input()product!:any;
   quantity:number=1;
   productdetail!:Products;
@@ -59,31 +60,37 @@ export class CartitemComponent implements OnInit {
   }
 
   modifyCartProducts(productid:string,quantity:number,value:number){
-    this.cartListService.modifyCart(productid,quantity).subscribe(
+    if(this.loginService.loggedUserDetails?.userid){
+      this.cartListService.modifyCart(productid,quantity,this.loginService.loggedUserDetails.userid).subscribe(
       (data:any)=>{
         console.log("cart quantity modified",data);
-        this.cartListService.getCart().subscribe();
+        this.cartListService.getCart(this.loginService.loggedUserDetails.userid).subscribe();
       },
       ((err:any)=>{
         console.log("error in updating cart");
         this.quantity += value;
       })
-    );
+    );}else{
+      this.router.navigate(["/login"]);
+    }
   }
 
     /* 
     delete product from cart
     */
    removeProductFromCart(productid:string){
-     this.cartListService.removeFromCart(productid).subscribe(
+     if(this.loginService.loggedUserDetails?.userid){
+       this.cartListService.removeFromCart(productid,this.loginService.loggedUserDetails.userid).subscribe(
        (data:any)=>{
         console.log("remove success",data);
-        this.cartListService.getCart().subscribe(data=>console.log("updated data",data));
+        this.cartListService.getCart(this.loginService.loggedUserDetails.userid).subscribe(data=>console.log("updated data",data));
        },
        (err:any)=>{
          console.log("something went wrong in deleting the cart",err);
        }
      );
+   }else{
+    this.router.navigate(["/login"]);
    }
-
+  }
 }
