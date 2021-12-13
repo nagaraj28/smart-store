@@ -16,6 +16,7 @@ export class AppComponent {
   cartListSize:number=0;
   searchValue:string="";
   loggedUser!:any;
+  openNavBar:boolean=false;
   constructor(private cartListService:CartlistService,private wishListService:WishlistService,private productService:ProductsService,private router:Router,private loginService:LoginService){}
   ngOnInit():void{
 

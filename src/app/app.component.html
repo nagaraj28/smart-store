@@ -1,12 +1,11 @@
 <nav class="container">
-  <div class="logo-ctnr">
+  <div class="logo-ctnr" routerLink ="/">
     <span class="logo">
       smart store
     </span>
       <mat-icon class="logo-icon"> developer_board</mat-icon>  
-   
   </div>
-  <ul>
+  <ul class="nav-link-ctnr">
     <li class="nav-link" routerLink ="/" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4 >Home</h4></li>
     <li  class="nav-link" routerLink="/products" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4>Shop Now</h4></li>
   </ul>
@@ -29,7 +28,34 @@
         <mat-icon  class="nav-item" matBadgeColor="warn" [matBadge]="cartListSize">shopping_cart</mat-icon>
         <p>cart</p>
       </div>
+      <mat-icon class="menu-icon" (click)="openNavBar=true">menu</mat-icon>
   </div>
+</nav>
+<nav class="responsive-ctnr" *ngIf="openNavBar">
+  <mat-icon class="cancel-menu" (click)="openNavBar=false">cancel_presentation</mat-icon>
+  <ul class="menu-items-list">
+      <li class="nav-link" routerLink ="/" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4 >Home</h4></li>
+    <li  class="nav-link" routerLink="/products" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4>Shop Now</h4></li>
+    <li  class="nav-link">
+      <div routerLink ="/wishlist" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon class="nav-item" matBadgeColor="warn"  [matBadge]="wishListSize" matBadgeSize="small">favorite</mat-icon>
+        <p>wishlist</p>
+      </div>
+    </li>
+    <li  class="nav-link">
+      <div  routerLink ="/cart" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon  class="nav-item" matBadgeColor="warn" [matBadge]="cartListSize">shopping_cart</mat-icon>
+        <p>cart</p>
+      </div>
+    </li >
+    <li  class="nav-link">
+      <div routerLink="/profile" routerLinkActive="active-link" >
+        <mat-icon  class="nav-item">person</mat-icon>
+        <p *ngIf="loggedUser?.username">Hey,{{loggedUser.username}}</p>
+        <p *ngIf="!loggedUser?.username">not logged</p>
+      </div>
+    </li>
+  </ul>
 </nav>
 <h1 class="add-space"></h1>
 <router-outlet></router-outlet>
