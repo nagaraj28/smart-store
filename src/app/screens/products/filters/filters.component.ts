@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductsService } from '../productcard/products.service';
 
@@ -16,7 +17,7 @@ export class FiltersComponent implements OnInit {
   sort:string="none";
   sortByLowPrice:boolean=false;
   sortByHighPrice:boolean=false;
-  constructor(private productsService:ProductsService) { }
+  constructor(private productsService:ProductsService,private router:Router) { }
   ngOnInit(): void {
     this.getAllCategories();
     this.getAllBrands();
@@ -27,6 +28,16 @@ export class FiltersComponent implements OnInit {
     // console.log(this.sort);
      this.productsService.getFilteredData(this.categoriesData,this.brandsData,this.sort);
   }
+  setCategory(value:string,section:string){
+    this.router.navigate(["/products"]);
+   setTimeout(()=>{
+    if(section==="category")
+    this.categoriesData[value]= true;
+    else 
+    this.brandsData[value]= true;
+    this.productsService.getFilteredData(this.categoriesData,this.brandsData,this.sort);
+  },5000);
+   }
   brandsChange(){
     // console.log(this.brandsData)
     this.productsService.getFilteredData(this.categoriesData,this.brandsData,this.sort);

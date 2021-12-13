@@ -1,17 +1,14 @@
 <div class="category-ctnr">
     <div class="heading-ctnr">
         <h2 class="heading-category" >
-           Best sellers
+           Top Brands
          </h2>   
     </div>
     <hr/>
     <div class="cards-ctnr">
-        <div class="card" *ngFor="let item of dummyarray">
+        <div class="card" *ngFor="let brand of topBrands" (click)="setBrands(brand.brand)">
             <div class="category-img"   >
-                <img class="img-item" src="../../../assets/images/smart-watches/samsung_watch.jpg" alt="category image" />
-            </div>
-            <div class="category-name">
-                <h3  >Smart Watches</h3>
+                <img class="img-item" [src]="'../../../assets/images/'+brand.imageURL" alt="category image" />
             </div>
         </div>
         

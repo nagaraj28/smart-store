@@ -6,12 +6,12 @@
     </div>
     <hr/>
     <div class="cards-ctnr">
-        <div class="card" *ngFor="let item of dummyarray">
+        <div class="card" *ngFor="let category of topCategories" (click)="goToSelectedCard(category.category)"> 
             <div class="category-img"   >
-                <img class="img-item" src="../../../assets/images/smart-watches/samsung_watch.jpg" alt="category image" />
+                <img class="img-item" [src]="'../../../assets/images/'+category.imageURL" alt="category image" />
             </div>
             <div class="category-name">
-                <h3  >Smart Watches</h3>
+                <h3  >Smart {{category.category}}</h3>
             </div>
         </div>
         

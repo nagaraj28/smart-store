@@ -28,7 +28,7 @@ export class LoginService {
   register(registerForm:any):Observable<any>{
     const headers = new HttpHeaders();
     headers.set("Content-Type","application/json");
-    return this.http.post<any>(URL+"ecommerceuser/register",registerForm,{headers:headers}).pipe(
+    return this.http.post<any>(URL+"ecommerceuser/signup",registerForm.value,{headers:headers}).pipe(
       tap((data:any)=>console.log("registered...")),
       catchError(this.handleError)
     );
