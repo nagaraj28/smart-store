@@ -17,6 +17,8 @@ export class FiltersComponent implements OnInit {
   sort:string="none";
   sortByLowPrice:boolean=false;
   sortByHighPrice:boolean=false;
+  showFilters:boolean=false;
+
   constructor(private productsService:ProductsService,private router:Router) { }
   ngOnInit(): void {
     this.getAllCategories();

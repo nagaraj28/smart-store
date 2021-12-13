@@ -1,17 +1,98 @@
 .f-main-ctnr{
-    position: fixed;
     margin-left: 50px;
     width: 15%;
     margin-top: 15px;
+    height: auto;
     }
-    .f-main-heading{
+.f-main-heading{
        display: flex;
        justify-content: space-between;
         }
-        .clearall-btn{
+.clearall-btn{
             cursor: pointer;
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: 2px solid #2BAE66FF;
+            margin-left: 25px;
+            text-align: center;
         }
-      
+.head-item{
+    white-space: nowrap;
+}
+.brand-item,.category-item{
+display: flex;
+white-space: nowrap;
+}
+.res-f-main-heading{
+    display: none;
+}
+.resp-f-main-heading{
+    display: none;
+}
+
+@media screen and (max-width:800px){
+    .f-main-ctnr{
+        width: 100%;
+        margin: 0;
+    }
+    .responsive-ctnr,.hide{
+        display: none;
+     }
+     .resp-f-main-heading{
+        margin-top: 40px;
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .show-ctnr{
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        top: 0;
+        z-index: 4;
+        overflow-y: scroll;
+    }
+   
+    .res-f-main-heading{
+        display: block;
+    }
+    /* .resp-f-main-heading{
+        display: block;
+    } */
+   
+    .clearall-btn{
+        padding-left: 0;
+        padding-right: 45px;
+        margin-right: 20px;
+    }
+    .res-f-main-heading{
+        width: 100%;
+        position: fixed;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+    }
+    .res-space{
+        position: relative;
+        margin-top: 60px;
+    }
+    .category-ctnr{
+        padding-left: 20px;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .f-list{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        grid-gap: 50px;
+    }
+    .radio-item{
+        padding: 25px;
+    }
+}

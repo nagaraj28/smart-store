@@ -13,3 +13,8 @@
     padding-top: 20px
 }
 
+@media screen and (max-width:900px){
+    .cart-ctnr{
+        grid-template-columns: auto;
+    }
+}

@@ -1,50 +1,62 @@
 <div class="f-main-ctnr">
-    <div class="f-main-heading">
+    <div class="f-main-heading hide">
         <h3 class="head-item">FILTERS</h3>
          <a class="head-item clearall-btn" (click)="clearAll()">CLEAR ALL</a>
     </div>
-    <div class="category-ctnr">
-        <div class="f-header">
-            <h3>SORT</h3>
+    <div class="resp-f-main-heading">
+        <h3 class="head-item  clearall-btn" (click)="showFilters=true">FILTERS</h3>
+         <a class="head-item clearall-btn" (click)="clearAll()">CLEAR ALL</a>
+    </div>
+    <div class="responsive-ctnr" [ngClass]="{'show-ctnr':showFilters}">
+        <div class="res-f-main-heading">
+            <h3 class="head-item clearall-btn" (click)="showFilters=false">DONE</h3>
+             <a class="head-item clearall-btn" (click)="clearAll()">CLEAR ALL</a>
         </div>
-        <div class="f-list">
-            <div class="f-item" >
-                <mat-radio-group  [(ngModel)]="sort" (change)="categoriesChange()" class="radio-ctnr">
-                    <mat-radio-button value="low"  >
-                        Price Low to High
-                    </mat-radio-button>
-                    <mat-radio-button value="high">
-                        Price High to Low
-                    </mat-radio-button>
-                </mat-radio-group >
-              
-             
+        <div class="second-responsive-ctnr">
+        </div>
+        <div class="category-ctnr">
+            <div class="f-header res-space">
+                <h3>SORT</h3>
+            </div>
+            <div class="f-list">
+                <div class="f-item" >
+                    <mat-radio-group  [(ngModel)]="sort" (change)="categoriesChange()" class="radio-ctnr">
+                        <mat-radio-button value="low" class="radio-item"  >
+                            Price Low to High
+                        </mat-radio-button>
+                        <mat-radio-button value="high">
+                            Price High to Low
+                        </mat-radio-button>
+                    </mat-radio-group >
+                </div>
             </div>
         </div>
-    </div>
-    <div class="category-ctnr">
-        <div class="f-header">
-            <h3>CATEGORY</h3>
+        <div class="category-ctnr">
+            <div class="f-header">
+                <h3>CATEGORY</h3>
+            </div>
+            <div class="f-list" >
+                    <div class="f-item" *ngFor="let category of categories;let i=index">
+                        <label  class="category-item">
+                            <input type="checkbox" [(ngModel)]="categoriesData[category]" (change)="categoriesChange()" />
+                            <span>smart {{category}}</span>
+                        </label><br/>
+                    </div>
+            </div>
         </div>
-        <div class="f-list" >
-                <div class="f-item" *ngFor="let category of categories;let i=index">
-                    <label>
-                        <input type="checkbox" [(ngModel)]="categoriesData[category]" (change)="categoriesChange()" />smart {{category}}
+        <div class="category-ctnr">
+            <div class="f-header">
+                <h3>BRAND</h3>
+            </div>
+            <div class="f-list">
+                <div class="f-item" *ngFor="let brand of brands">
+                    <label class="brand-item">
+                        <input type="checkbox" [(ngModel)]="brandsData[brand]" (change)="brandsChange()"/>
+                        <span>{{brand}}</span>
                     </label><br/>
                 </div>
-              
-        </div>
-    </div>
-    <div class="category-ctnr">
-        <div class="f-header">
-            <h3>BRAND</h3>
-        </div>
-        <div class="f-list">
-            <div class="f-item" *ngFor="let brand of brands">
-                <label>
-                    <input type="checkbox" [(ngModel)]="brandsData[brand]" (change)="brandsChange()"/>{{brand}}
-                </label><br/>
             </div>
         </div>
     </div>
+    
 </div>

@@ -29,3 +29,15 @@
 .active-link{
     color: #2BAE66FF;
 }
+@media screen and (max-width:700px){
+    .prof-ctnr{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+    }
+    .profile-list{
+        display: flex;
+        border-right:none;
+    }
+}
