@@ -1,11 +1,9 @@
 <div class="prof-details-ctnr">
     <h4 class="heading-txt">Addresses</h4>
-      <div class="addr-list">
-            <app-address></app-address>
-            <app-address></app-address>
-            <app-address></app-address>
+          <div class="addr-list">
+            <app-address [address]="addressListItem" *ngFor="let addressListItem of addressList"></app-address>
       </div>      
-      <div class="addr-btn-ctnr">
-          <button>+ add new address</button>
+      <div >
+          <button class="addr-btn" (click)="addNewAddress()">+ click to add new address</button>
       </div>
 </div>

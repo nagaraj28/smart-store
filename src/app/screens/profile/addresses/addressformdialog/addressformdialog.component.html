@@ -2,29 +2,79 @@
     <div class="form-ctnr">
         <div >
             <mat-icon class="cancel-btn" (click)="closeDialog()" >cancel</mat-icon>
-            <h3 class="dialog-header">add/update address</h3>
+            <h3 class="dialog-header">{{title}} address</h3>
         </div>
-        <form class="form">
+        <form class="form"  [formGroup]="addressForm">
             <label class="input-label">
-                <input class="input-box" type="text-box" placeholder="full name"/><br/>
+                <input class="input-box" type="text-box" placeholder="full name" formControlName="name" /><br/>
+               
             </label>
+            <p
+            *ngIf="(addressForm.controls['name'].dirty ||
+                   addressForm.controls['name'].touched|| 
+                   addressForm.controls['name'].pristine) &&
+                   addressForm.controls['name'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
             <label class="input-label">
-                <input  class="input-box" type="text-box" placeholder="house No,street,town"/><br/>
+                <input  class="input-box" type="text-box" placeholder="house No,street,town" formControlName="street"/><br/>
             </label>
+            <p
+            *ngIf="(addressForm.controls['street'].dirty ||
+                   addressForm.controls['street'].touched|| 
+                   addressForm.controls['street'].pristine) &&
+                   addressForm.controls['street'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
             <label class="input-label">
-                <input  class="input-box" type="text-box" placeholder="city"/><br/>
+                <input  class="input-box" type="text-box" placeholder="city" formControlName="city"/><br/>
             </label>
+            <p
+            *ngIf="(addressForm.controls['city'].dirty ||
+                   addressForm.controls['city'].touched|| 
+                   addressForm.controls['city'].pristine) &&
+                   addressForm.controls['city'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
             <label class="input-label">
-                <input class="input-box" type="text-box" placeholder="state"/><br/>
+                <input class="input-box" type="text-box" placeholder="state" formControlName="state"/><br/>
             </label>
+            <p
+            *ngIf="(addressForm.controls['state'].dirty ||
+                   addressForm.controls['state'].touched|| 
+                   addressForm.controls['state'].pristine) &&
+                   addressForm.controls['state'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
             <label class="input-label">
-                <input  class="input-box" type="number" placeholder="pincode"/><br/>
+                <input  class="input-box" type="number" placeholder="pincode" formControlName="zipcode"/><br/>
             </label>
+            <p
+            *ngIf="(addressForm.controls['zipcode'].dirty ||
+                   addressForm.controls['zipcode'].touched|| 
+                   addressForm.controls['zipcode'].pristine) &&
+                   addressForm.controls['zipcode'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
             <label class="input-label">
-                <input  class="input-box" type="number" placeholder="mobile"/><br/>
+                <input  class="input-box" type="number" placeholder="mobile" formControlName="phoneno"/><br/>
             </label>
-            <button class="dialog-btns">save</button>
-            <button class="dialog-btns" (click)="closeDialog()">cancel</button>
+            <p
+            *ngIf="(addressForm.controls['phoneno'].dirty ||
+                   addressForm.controls['phoneno'].touched|| 
+                   addressForm.controls['phoneno'].pristine) &&
+                   addressForm.controls['phoneno'].errors"
+            class="alert alert-danger">
+               This field is required!
+          </p>
+            <button class="dialog-btns primary" *ngIf="title==='add'" [disabled]="addressForm.invalid" (click)="addAddress(loggedUser.userid)">add</button>
+            <button class="dialog-btns primary" *ngIf="title==='update'" [disabled]="addressForm.invalid" (click)="updateAddress(currentFormAddress._id,loggedUser.userid)">update</button>
+            <button class="dialog-btns secondary" (click)="closeDialog()">cancel</button>
         </form> 
     </div>
 </div>

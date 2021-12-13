@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (submit)="register()" >
+        <label>
+            Full Name
+            <input type="text-box"  placeholder="your name" formControlName="fullname" />
+            <p *ngIf="registerForm.controls['fullname'].errors" >this field is required!</p>
+        </label>
+        <label>
+        Email
+        <input type="email"  placeholder="enter email address" formControlName="email"/>
+        <p *ngIf="registerForm.controls['email'].errors">this field is required!</p>
+    </label>
+        <label>
+        Password
+        <input type="password"  placeholder="enter your password" formControlName="password"/>
+        <p *ngIf="registerForm.controls['password'].errors">this field is required!</p>
+        </label>
+        <label>
+            Password
+            <input type="password"  placeholder="re-enter your password" formControlName="password1"/>
+            <p *ngIf="registerForm.controls['password1'].errors">this field is required!</p>
+            <p *ngIf="registerForm.controls['password'].value.length>=1&&registerForm.controls['password1'].value.length>=1 &&
+                registerForm.controls['password'].value!==registerForm.controls['password1'].value
+                ">passwords do not match!</p>
+        </label>
+        <button [disabled]="(registerForm.invalid || registerForm.controls['password'].value!==registerForm.controls['password1'].value)">Register</button>
+    </form>
+</div>

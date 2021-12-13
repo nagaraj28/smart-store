@@ -1,0 +1,19 @@
+
+<div class="container"  [ngClass]="{'open':showAddressDialog,'hide':!showAddressDialog}">
+    <div class="prof-details-ctnr">
+        <mat-icon class="cancel-btn" (click)="closeDialog()">cancel</mat-icon>
+        <div>
+            <h4 class="heading-txt">
+                Addresses
+            </h4>
+                  <mat-radio-group class="addr-list" [(ngModel)]="addressSelected" (change)="addressChanged()">
+                        <mat-radio-button *ngFor="let addressListItem of addressList" [value]="addressListItem">
+                                <app-address [address]="addressListItem" ></app-address>
+                            </mat-radio-button>
+                      </mat-radio-group>
+              <div>
+                  <button class="addr-btn" (click)="addNewAddress()">+ click to add new address</button>
+              </div>
+        </div>
+    </div>
+</div>

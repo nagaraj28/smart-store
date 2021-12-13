@@ -1,0 +1,27 @@
+<div class="addr-ctnr" *ngIf="currentAddress && cartList&& cartList.length>0">
+    <div>
+        <h4 class="name-txt">
+            {{currentAddress.name}}
+          </h4>
+          <p>
+            {{currentAddress.street}}
+          </p>
+          <p><span>  {{currentAddress.city}}</span>,<span>  {{currentAddress.state}}</span>,<span> {{currentAddress.zipcode}}</span></p>
+          <p>mobile:  {{currentAddress.phoneno}}</p>
+    </div>
+  
+    <div>
+        <button class="addr-btn primary" (click)="changeAddress()">change</button>
+    </div>
+    <!-- (click)="editAddress(address)" -->
+</div>
+<div class="addr-ctnr" *ngIf="!currentAddress">
+    <div>
+        <h3>
+            please add atleast one address to proceed with order &nbsp;&nbsp;&nbsp;
+        </h3>
+    </div>
+    <div>
+        <button class="addr-btn primary" (click)="changeAddress()">add address</button>
+    </div>
+</div>

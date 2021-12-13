@@ -1,37 +1,34 @@
-<div class="order-ctnr">
-    <h4>Order Confirmed</h4>
-    <p><em>10/12/2021</em></p>
+<div class="order-ctnr" *ngIf="order">
+    <h4 class="order-confirm-txt">Order Confirmed</h4>
+    <p><em>{{order.time | date:'dd/MM/yyyy'}}</em></p>
     <h4>Total Paid Rs.40000</h4>
     <div>
-        <p>Delivered to Hyderabad</p>
+        <p>Delivered to : <strong>{{order.addressDelivered.name}}</strong></p>
+        <p> 
+            <span> {{order.addressDelivered.street}}</span> ,
+            <span> {{order.addressDelivered.city}}</span> ,
+            <span> {{order.addressDelivered.state}}</span>
+            </p>
+            <p>
+            <span>zip: <em>{{order.addressDelivered.zipcode}}</em></span>,
+            <span>mobile: <em>{{order.addressDelivered.phoneno}}</em></span>
+        </p>
     </div>
-    <div class="container" *ngIf="productThere===true">
+    <div class="container" *ngFor="let product of order.order">
         <div class="image-container">
-            <img class="img-item"  [src]=[product.imageURL] />
+            <img class="img-item" [src]="'../../../assets/images/'+product.imageURL"  />
         </div>
         <div>
             <h4>{{product.displayName}}</h4>
             <div class="price-desc">
-            <p class="cart-item">Rs. <del>{{product.price}}</del></p>
-            <p class="cart-item">Rs. {{product.offerPrice}}</p>
-            <p class="cart-item"><small><strong>{{product.discount}}% OFF</strong></small></p>
+            <p class="cart-item">Rs. <del>{{product.price | currency:'INR'}}</del></p>&nbsp;&nbsp;
+            <p class="cart-item">{{product.offerPrice | currency:'INR'}}</p>&nbsp;&nbsp;
+            <p class="cart-item"><small><strong>you saved: {{(product.price*product.quantity)-(product.offerPrice*product.quantity) | currency:'INR'}}
+            </strong></small></p>&nbsp;&nbsp;
             </div>
-            <p><small>Delivery: Rs. {{product.deliveryCharge}}</small></p>
+            <p><small>Delivery: {{product.deliveryCharge | currency:'INR'}}</small></p>
+            <p>qty:{{product.quantity}}</p>
         </div>
     </div>
-    <!--  2nd item  -->
-    <div class="container" *ngIf="productThere===true">
-        <div class="image-container">
-            <img class="img-item"  [src]=[product.imageURL] />
-        </div>
-        <div>
-            <h4>{{product.displayName}}</h4>
-            <div class="price-desc">
-            <p class="cart-item">Rs. <del>{{product.price}}</del></p>
-            <p class="cart-item">Rs. {{product.offerPrice}}</p>
-            <p class="cart-item"><small><strong>{{product.discount}}% OFF</strong></small></p>
-            </div>
-            <p><small>Delivery: Rs. {{product.deliveryCharge}}</small></p>
-        </div>
-    </div>
+   
 </div>

@@ -1,4 +1,8 @@
-<div class="order-ctnr">
-    <app-order></app-order>
-    <app-order></app-order>
+<div class="order-ctnr" >
+    <div *ngFor="let orderItem of allOrders">
+        <app-order [order]="orderItem"></app-order>
+    </div>
+    <div class="not-found-txt" *ngIf="!allOrders">
+     no orders found...
+    </div>
 </div>

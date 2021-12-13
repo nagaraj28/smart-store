@@ -1,5 +1,9 @@
 <div>
+    <app-deliveryaddress></app-deliveryaddress>
     <span *ngFor="let cartProduct of cartProducts" cartProducts>
         <app-cartitem [product] = "cartProduct" ></app-cartitem>
     </span>
+    <div *ngIf="!(cartProducts&&cartProducts.length>0)">
+       <h2> your cart is empty...</h2>
+    </div>
 </div>

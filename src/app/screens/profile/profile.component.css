@@ -18,9 +18,14 @@
 }
 .list-item{
     font-size: 20px;
-    font-weight: lighter;
+    font-weight: 400;
     padding: 20px;
     padding-left: 0;
     border-bottom: 1px solid rgb(236, 211, 211);
+    cursor: pointer;
 
+
+}
+.active-link{
+    color: #2BAE66FF;
 }

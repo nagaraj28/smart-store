@@ -40,6 +40,7 @@ display: flex;
     width: 130px;
     height: 40px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .rating-box{
     width: 70px;
@@ -53,4 +54,15 @@ display: flex;
 }
 .cust-review-heading{
     color: #2BAE66FF;
+}
+.primary{
+    background-color: #fff;
+    border: 1px solid #2BAE66FF;
+}
+.primary:hover{
+    background-color: #2BAE66FF;
+}
+.secondary:hover{
+    background-color: white;
+    border: 1px solid #2BAE66FF;
 }

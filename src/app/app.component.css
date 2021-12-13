@@ -25,17 +25,11 @@ h4{
     margin:10px;
     padding-bottom: 0;
 }
-.search-bar{
-    width: 450px;
-    height: 45px;
-    border-radius: 3px;
-    font-size: 15px;
-    font-weight: 450;
-    background-color: #fff;
-}
+
 .nav-item-ctnr{
     padding:0 25px;
     text-align: center;
+    cursor: pointer;
 }
 .nav-item{
     font-size: 20px;
@@ -43,13 +37,51 @@ h4{
 p{
     font-weight:lighter;
 }
-.search-btn{
-    width: 80px;
-    height: 45px;
-    border-radius: 3px;
-    font-size: 15px;
-}
 .add-space{
     position: relative;
     margin-top: 90px;
+}
+.active-link{
+    color: #2BAE66FF;
+    border-bottom: 1px solid #2BAE66FF;
+}
+.nav-link{
+    cursor: pointer;
+}
+
+.search-ctnr{
+    display: flex;
+    justify-content: space-around;
+    /* margin-top: 40px; */
+    border: 1px solid rgb(170, 152, 152);
+    align-items: center;
+    max-height: 38px;
+    border-radius: 5px;
+    background-color:#f4f4f5;
+}
+.search-icon{
+    /* font-size:30px; */
+    margin-right: 5px;
+    text-align: center;
+    align-items: center;
+    color: #9ca3af;
+    padding:0px 5px;
+    margin-right: 20px;
+}
+.search-bar{
+    width: 450px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 450;
+    background-color:#f4f4f5;
+    border:none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+/* .search-ctnr:focus,.search-ctnr:hover>.search-bar{
+    background-color: #fff;
+} */
+.search-ctnr:focus-within,.search-bar:focus{
+    background-color: #fff;
 }

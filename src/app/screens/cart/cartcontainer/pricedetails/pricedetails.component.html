@@ -1,29 +1,28 @@
-<div class="price-ctnr">
+<div class="price-ctnr" *ngIf="cartListProductIds.length>0 && cartListProductDetails.length>0">
 <div class="heading">
 <h4>PRICE DETAILS</h4>
 </div>
 <hr/>
 <div>
     <div class="price-item">
-        <h4>Price (2 items)</h4>
-        <h4>Rs. 2222</h4>
+        <h4>Price ({{cartListProductIds.length}} items)</h4>
+        <h4>{{totalPrice}}</h4>
     </div>
     <div class="price-item">
         <h4>Discount</h4>
-        <h4>Rs. 2222</h4>
+        <h4>{{totalPrice-totalOfferPrice}}</h4>
     </div>
     <div class="price-item">
         <h4>Delivery</h4>
-        <h4>Rs. 2222</h4>
+        <h4>{{totalDeliveryCharge}}</h4>
     </div>
     <div class="price-item">
-       
             <h4>Total Amount</h4>
-            <h4>Rs. 2222</h4>
+            <h4>{{totalOfferPrice}}</h4>
     
     </div>
 <div class="order-btn-ctnr">
-    <button class="order-btn">Place Order</button>
+    <button class="order-btn" [disabled]="!currentAddress" (click)="placeOrder()">Place Order</button>
 </div>
 
 </div>

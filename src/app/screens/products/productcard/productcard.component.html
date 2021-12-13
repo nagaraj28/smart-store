@@ -5,10 +5,8 @@
     <div class="txt-ctnr">
         <div class="title-ctnr">
             <p class="title-txt" [routerLink]="'/products/'+product._id">{{product.displayName}}</p>
-            <mat-icon class="nav-item" [ngClass]="{
-            'liked':isWishListed,
-            'notliked':!isWishListed
-            }" (click)="changeColor()">favorite</mat-icon>
+            <mat-icon *ngIf="isWishListed" class="nav-item liked" (click)="removeFromWishlist(product._id)">favorite</mat-icon>
+            <mat-icon *ngIf="!isWishListed" class="nav-item notliked" (click)="addToWishlist(product._id)">favorite</mat-icon>
         </div>
         <div  [routerLink]="'/products/'+product._id">
             <p>{{product.shortDescription}}</p>
@@ -20,5 +18,6 @@
         <span> {{product.discount}}%</span>
         </div>
     </div>
-    <button class="add-btn">Add to Cart</button>
+    <button *ngIf="!isInCart" class="add-btn" (click)="addToCart(product._id)">Add to Cart</button>
+    <button *ngIf="isInCart" class="add-btn" (click)="goToCart()">Go to Cart</button>
 </div>

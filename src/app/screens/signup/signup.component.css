@@ -1,0 +1,9 @@
+.container{
+    width: 650px;
+    margin: 0 auto;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}

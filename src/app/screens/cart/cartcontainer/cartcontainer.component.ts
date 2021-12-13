@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressesService } from '../../profile/addresses/addresses.service';
 
 @Component({
   selector: 'app-cartcontainer',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cartcontainer.component.css']
 })
 export class CartcontainerComponent implements OnInit {
-
-  constructor() { }
-
+  isAddressForm !:boolean;
+  constructor(private addressesService:AddressesService) { }
   ngOnInit(): void {
   }
-
+  ngDoCheck(){
+    this.isAddressForm = this.addressesService.isDialogOpen;
+  }
 }

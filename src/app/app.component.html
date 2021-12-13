@@ -1,21 +1,25 @@
 <nav class="container">
   <ul>
-    <li><h4 >Home</h4></li>
-    <li><a routerLink="/products">Shop Now</a></li>
+    <li class="nav-link" routerLink ="/" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4 >Home</h4></li>
+    <li  class="nav-link" routerLink="/products" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }"><h4>Shop Now</h4></li>
   </ul>
   <div class="second-ctnr">
-    <input class="search-bar" type="search" placeholder="Search for a product">
-    <button class="search-btn" routerLink ="/wishlist">search</button>
-      <div class="nav-item-ctnr">
-        <mat-icon class="nav-item" matBadgeColor="warn"  matBadge="0" matBadgeSize="small">favorite</mat-icon>
+    <div class="search-ctnr">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input class="search-bar" type="search" placeholder="Search for a product" [(ngModel)]="searchValue" (keyup.enter)="findProducts()">
+    </div>
+    <!-- <button class="search-btn" (click)="findProducts()">search</button> -->
+      <div class="nav-item-ctnr"  routerLink ="/wishlist" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon class="nav-item" matBadgeColor="warn"  [matBadge]="wishListSize" matBadgeSize="small">favorite</mat-icon>
         <p>wishlist</p>
       </div>
-      <div class="nav-item-ctnr">
+      <div class="nav-item-ctnr" routerLink="/profile" routerLinkActive="active-link" >
         <mat-icon  class="nav-item">person</mat-icon>
-        <p>profile</p>
+        <p *ngIf="loggedUser?.username">Hey,{{loggedUser.username}}</p>
+        <p *ngIf="!loggedUser?.username">not logged</p>
       </div>
-      <div class="nav-item-ctnr" routerLink ="/cart">
-        <mat-icon  class="nav-item" matBadgeColor="warn" matBadge="1">shopping_cart</mat-icon>
+      <div class="nav-item-ctnr" routerLink ="/cart" routerLinkActive="active-link"  [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon  class="nav-item" matBadgeColor="warn" [matBadge]="cartListSize">shopping_cart</mat-icon>
         <p>cart</p>
       </div>
   </div>

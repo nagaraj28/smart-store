@@ -2,6 +2,11 @@
 <div>
     <h2 class="cart-heading">WISHLIST</h2>
     <div class="wishlist-ctnr">
-        <app-productcard *ngFor="let item of items"></app-productcard>
+        <span *ngFor="let wishlistProduct of wishlistProducts">
+            <app-productcard [product]="wishlistProduct"></app-productcard>
+        </span>
+    </div>
+    <div  *ngIf="!(wishlistProducts && wishlistProducts.length>0)">
+        <h3 class="centre">No Products in Wishlist</h3>
     </div>
 </div>

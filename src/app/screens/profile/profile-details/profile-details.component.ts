@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-profile-details',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit {
-
-  constructor() { }
+  loggedUser !: any;
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
-
+  ngDoCheck(){
+    if(this.loggedUser!==this.loginService.loggedUserDetails){
+      this.loggedUser = this.loginService.loggedUserDetails;
+    }
+  }
 }
