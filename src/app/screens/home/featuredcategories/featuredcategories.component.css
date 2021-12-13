@@ -1,7 +1,6 @@
 .heading-ctnr{
-   display:  flex;
+   display:flex;
    justify-content: center;
-
 }
 
 .heading-category{
@@ -58,4 +57,14 @@ h3{
 .card:hover{
    cursor: pointer;
    transform: scale(1.1);
+}
+@media screen and (max-width:960px){
+    .cards-ctnr{
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width:500px){
+    .cards-ctnr{
+        grid-template-columns: auto;
+    }
 }
