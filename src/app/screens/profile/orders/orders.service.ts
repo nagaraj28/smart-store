@@ -24,14 +24,15 @@ export class OrdersService {
   /* 
   place order 
   */
-  placeOrder(addressDelivered:any,orderedProducts:any,userid:string):Observable<any[]>{
+  placeOrder(addressDelivered:any,orderedProducts:any,userid:string,orderTotal:number):Observable<any[]>{
     const headers = new HttpHeaders();
     headers.set('Content-Type','application/json');
     const userId=userid;
     const body = {
       userid:userId,
       products:orderedProducts,
-      address:addressDelivered
+      address:addressDelivered,
+      orderTotal:orderTotal
     }
     return this.http.post<any>(URL+"ecommerceuser/placeorder",body,{headers:headers}).pipe(
       tap((data:any)=>{

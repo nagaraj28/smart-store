@@ -64,9 +64,11 @@ export class PricedetailsComponent implements OnInit {
   }
   placeOrder(){
     let orderedProductDetails = [];
+    let orderTotal:number = 0;
     for(let cartproduct of this.cartListProductDetails){
       for(let cartproductlistItem of this.cartListProductIds){
         if(cartproduct._id===cartproductlistItem.productid){
+          orderTotal += (cartproduct.offerPrice *cartproductlistItem.quantity);
           orderedProductDetails.push({
             offerPrice:cartproduct.offerPrice,
             displayName:cartproduct.displayName,
@@ -80,7 +82,7 @@ export class PricedetailsComponent implements OnInit {
       }
     }
     // console.log("place order",this.addressesService.addressSelectedValue,this.totalOfferPrice,orderedProductDetails);
-    this.ordersService.placeOrder(this.addressesService.addressSelectedValue,orderedProductDetails,this.loggedUser.userid).subscribe(
+    this.ordersService.placeOrder(this.addressesService.addressSelectedValue,orderedProductDetails,this.loggedUser.userid,orderTotal).subscribe(
       (data:any)=>{
         console.log("order placed successfully...",data);
         this.cartListService.deleteAllProductsFromCart(this.loginService.loggedUserDetails.userid).subscribe(

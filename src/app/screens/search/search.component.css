@@ -6,3 +6,18 @@
     margin-top: 25px
 }
 
+@media screen and (max-width:1050px) {
+    .list-ctnr{
+        grid-template-columns: auto auto auto;
+    }
+}
+@media screen and (max-width:980px){
+    .list-ctnr{
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width:620px) {
+    .list-ctnr{
+        grid-template-columns: auto;
+    }
+}
