@@ -1,9 +1,42 @@
 .container{
-    width: 650px;
+    width: 500px;
     margin: 0 auto;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 label{
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    margin: 20px;
+}
+
+input{
+    height: 45px;
+    border-radius: 5px;
+}
+.heading-txt{
+    text-align: center;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    background-color: #2BAE66FF;
+    margin-left: 20px;
+    padding:10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+:disabled{
+    background-color: #fff;
+}
+.err{
+    margin-left: 20px;
+    color: red;
+    font-size: 15px;
+}
+.create-acc{
+    margin-left: 20px;
 }
