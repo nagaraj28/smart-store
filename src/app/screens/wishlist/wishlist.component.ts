@@ -27,7 +27,6 @@ export class WishlistComponent implements OnInit {
     else{
       const token = localStorage.getItem("x-auth-token");
       if(token){
-        let appComponent = new AppComponent(this.cartlistService,this.wishlistService,this.productService,this.router,this.loginService);
         this.performTokenValidation(token);
           // console.log("token present");
       }
@@ -70,7 +69,6 @@ export class WishlistComponent implements OnInit {
         this.wishlistDataIds = data.data[0].wishlistproducts;
       this.getWishlistProducts(this.wishlistDataIds);
       }
-      
     },
     (err)=>{
       console.log("error in getting wishlist data");

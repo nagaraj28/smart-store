@@ -17,7 +17,7 @@ export class LoginService {
     const headers = new HttpHeaders();
     headers.set("Content-Type","application/json");
     return this.http.post<any>(URL+"ecommerceuser/login",loginForm,{headers:headers}).pipe(
-      tap((data:any)=>console.log("login successful")),
+      tap((data:any)=>console.log("login successful",data)),
       catchError(this.handleError)
     );
   }
