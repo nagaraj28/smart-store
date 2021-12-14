@@ -29,6 +29,8 @@ import { DeliveryaddressComponent } from './screens/cart/cartcontainer/cartlist/
 import { SearchComponent } from './screens/search/search.component';
 import { LoginComponent } from './screens/login/login.component';
 import { SignupComponent } from './screens/signup/signup.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { SignupComponent } from './screens/signup/signup.component';
     FormsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    ProfileModule
+    ProfileModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

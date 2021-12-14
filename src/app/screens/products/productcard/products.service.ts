@@ -12,6 +12,7 @@ export class ProductsService {
   actualProducts!:Products[];
   modifiedProducts!:Products[];
   filteredCategories!:Products[];
+  loadingProducts!:boolean;
   constructor(private http:HttpClient) { }
   
   /**
@@ -292,6 +293,12 @@ export class ProductsService {
           }),
           catchError(err=>this.handleError(err))
           );
+    }
+    startLoading():void{
+      this.loadingProducts = true;
+    }
+    stopLoading():void{
+      this.loadingProducts = false;
     }
   private handleError(httpError:HttpErrorResponse):Observable<any>{
     console.log("error ")

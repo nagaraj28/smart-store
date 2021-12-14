@@ -14,6 +14,7 @@ export class ProductlistingComponent implements OnInit {
   constructor(private productService:ProductsService,private wishListService:WishlistService,
   private cartListService:CartlistService,private loginService:LoginService) { }
   allProducts!:Products[];
+  loading!:boolean;
   // wishlistProducts!:Products[];
   ngOnInit(): void {
     console.log("hello do init");
@@ -35,6 +36,7 @@ export class ProductlistingComponent implements OnInit {
   ngDoCheck():void	{
     if(this.allProducts!==this.productService.modifiedProducts)
     this.allProducts=this.productService.modifiedProducts;
+    this.loading = this.productService.loadingProducts;
     // console.log(this.allProducts)
     //  console.log("hello do check")
     // this.wishListService.getWishlist().subscribe((data:any)=>{
