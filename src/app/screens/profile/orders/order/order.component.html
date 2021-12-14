@@ -1,7 +1,7 @@
 <div class="order-ctnr" *ngIf="order">
     <h4 class="order-confirm-txt">Order Confirmed</h4>
     <p><em>{{order.time | date:'dd/MM/yyyy'}}</em></p>
-    <h4>Total Paid Rs.40000</h4>
+    <h4>Total Paid{{order.orderTotal |  currency:'INR'}}</h4>
     <div>
         <p>Delivered to : <strong>{{order.addressDelivered.name}}</strong></p>
         <p> 
