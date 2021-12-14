@@ -22,20 +22,10 @@ export class CartlistComponent implements OnInit {
          this.getCartProducts(this.loginService.loggedUserDetails.userid);
          }
          else{
-           const token = localStorage.getItem("x-auth-token");
-           if(token){
-             let appComponent = new AppComponent(this.cartlistService,this.wishlistService,this.productService,this.router,this.loginService);
-             appComponent.performTokenValidation(token);
-             if(this.loginService.loggedUserDetails?.userid)
-             this.getCartProducts(this.loginService.loggedUserDetails.userid);
-             else
-             this.router.navigate(["/login"]);
-           }
-           else{
-             this.router.navigate(["/login"]);
-           }
-         }
+          this.router.navigate(["/login"]);
+    }
   }
+  
   ngDoCheck():void{
     if(this.cartProducts!==this.cartlistService.cartProducts){
       this.cartProducts = this.cartlistService.cartProducts;

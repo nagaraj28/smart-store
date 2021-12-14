@@ -1,8 +1,8 @@
-<div>
+<div *ngIf="loggedUser?.userid">
     <h2 class="cart-heading">CART</h2>
 </div>
-<app-addresscartcontainer class="cart-ctnr-address"></app-addresscartcontainer>
-<div class="cart-ctnr">
+<app-addresscartcontainer class="cart-ctnr-address" *ngIf="loggedUser?.userid"></app-addresscartcontainer>
+<div class="cart-ctnr" *ngIf="loggedUser?.userid">
     <app-cartlist></app-cartlist>
     <app-pricedetails></app-pricedetails>
 </div>

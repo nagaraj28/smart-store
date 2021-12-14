@@ -28,16 +28,13 @@ export class WishlistComponent implements OnInit {
       const token = localStorage.getItem("x-auth-token");
       if(token){
         let appComponent = new AppComponent(this.cartlistService,this.wishlistService,this.productService,this.router,this.loginService);
-        appComponent.performTokenValidation(token);
-        if(this.loginService.loggedUserDetails?.userid)
-        this.getCartProducts(this.loginService.loggedUserDetails.userid);
-        else
-        this.router.navigate(["/login"]);
-
+        this.performTokenValidation(token);
+          // console.log("token present");
       }
       else{
-        this.router.navigate(["/login"]);
-      }
+          console.log(" token not available");
+          this.router.navigate(["/login"]);
+            }
     }
   }
 
@@ -92,5 +89,22 @@ export class WishlistComponent implements OnInit {
       },
       (err=>console.log("error in fetching wishlist products...") )
     );
+  }
+  performTokenValidation(token:string){
+    this.loginService.validateToken(token).subscribe((data:any)=>{
+      if(data?.userid){
+       // console.log("token value validated...");
+               this.getCartProducts(this.loginService.loggedUserDetails.userid);
+       }
+       else{
+         console.log("invalid token",this.loginService.loggedUserDetails.userid);
+         this.router.navigate(["/login"]);
+       }
+    },
+    (err:any)=>{
+      localStorage.removeItem("x-auth-token")
+      console.log("error in alidating token...");
+      this.router.navigate(["/login"]);
+    });
   }
 } 
