@@ -32,13 +32,15 @@ export class FiltersComponent implements OnInit {
   }
   setCategory(value:string,section:string){
     this.router.navigate(["/products"]);
+    this.productsService.startLoading();
    setTimeout(()=>{
     if(section==="category")
     this.categoriesData[value]= true;
     else 
     this.brandsData[value]= true;
     this.productsService.getFilteredData(this.categoriesData,this.brandsData,this.sort);
-  },5000);
+    this.productsService.stopLoading();
+  },6000);
    }
   brandsChange(){
     // console.log(this.brandsData)

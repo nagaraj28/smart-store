@@ -14,6 +14,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!:FormGroup;
+  error!:string;
   constructor(private formBuilder:FormBuilder,private loginService:LoginService,private router:Router,private cartListService:CartlistService,
     private wishListService:WishlistService,private productsService:ProductsService) { }
   ngOnInit(): void {
@@ -23,16 +24,25 @@ export class LoginComponent implements OnInit {
     });
   }
   login():void{
+    this.error = "";
     this.loginService.login(this.loginForm.value).subscribe(
       (data:any)=>{
+        console.log(this.error);
         if(data.status==="success"){
           localStorage.setItem("x-auth-token",data.token);
           let appComponent = new AppComponent(this.cartListService,this.wishListService,this.productsService,this.router,this.loginService);
           appComponent.performTokenValidation(data.token);
           this.router.navigate(['/']);
         }
+        else{
+          if(data.message)
+          this.error = data.message;
+          else
+          this.error = data.errorMessage;
+        }
       },
       (err:any)=>{
+        this.error = "some error occured,please try again!"
         console.log("error logging in",err);
       }
     );

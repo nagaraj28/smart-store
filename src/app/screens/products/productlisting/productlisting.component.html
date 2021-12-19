@@ -1,5 +1,7 @@
 <div class="list-ctnr">
-        <span *ngFor="let eachProduct of allProducts">
+        <span *ngFor="let eachProduct of allProducts" [ngClass]="{'hide':loading}">
             <app-productcard [product]='eachProduct'></app-productcard>
         </span>
+            <mat-spinner *ngIf="loading" class="spinner" diameter="50" strokeWidth="4"></mat-spinner>
 </div>
+

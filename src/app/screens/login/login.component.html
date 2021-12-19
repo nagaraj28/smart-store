@@ -1,14 +1,16 @@
 <div class="container">
-    <h2>Register</h2>
+    <h2 class="heading-txt">Login</h2>
     <form [formGroup]="loginForm"(submit)="login()">
-        <label>
+        <label class="input-ctnr">
         Email
         <input type="email" formControlName="email"  placeholder="enter email address"/>
     </label>
-        <label>
+        <label class="input-ctnr">
         Password
         <input type="password" formControlName="password"  placeholder="enter your password"/>
         </label>
-        <button [disabled]="loginForm.invalid">Login</button>
+        <p class="err">{{error}}</p>
+        <button class="btn" [disabled]="loginForm.invalid">Login</button>
+        <p class="create-acc">Not having an account,create <a routerLink="/signup">here</a></p>
     </form>
 </div>

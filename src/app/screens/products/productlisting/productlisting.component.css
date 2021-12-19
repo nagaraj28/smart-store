@@ -5,6 +5,12 @@
     grid-gap: 90px;
     margin-top: 25px
 }
+.hide{
+    display:none;
+}
+:host ::ng-deep .spinner circle{   
+    stroke: #0CC20C;
+}
 @media screen and (max-width:1200px){
     .list-ctnr{
         grid-template-columns: auto auto;
@@ -15,3 +21,5 @@
         grid-template-columns: auto;
     }
 }
+
+

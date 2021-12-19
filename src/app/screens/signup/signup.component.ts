@@ -11,6 +11,8 @@ import { LoginService } from '../login/login.service';
 export class SignupComponent implements OnInit {
 
   registerForm!:FormGroup;
+  error!:string;
+  succMessage!:string;
   constructor(private formBuilder:FormBuilder,private loginService:LoginService) { }
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -22,9 +24,18 @@ export class SignupComponent implements OnInit {
   }
 
   register():void{
+    this.succMessage="";
+    this.error="";
     this.loginService.register(this.registerForm).subscribe(
       (data:any)=>{
         console.log("registration success");
+        if(data.status==="success"){
+          this.succMessage = "registration success!"
+        }
+        else{
+          if(data.message)
+          this.error = data.message;
+        }
       },
       (err:any)=>{
         console.log("error in registering",err);
