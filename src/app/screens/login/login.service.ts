@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import {URL} from "src/config/config";
 
@@ -8,7 +9,7 @@ import {URL} from "src/config/config";
 })
 export class LoginService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
   loggedUserDetails!:any;
   /* 
   login 
@@ -61,6 +62,14 @@ export class LoginService {
     );
   }
 
+    /*
+    logout user 
+    */
+    logout():void{
+     this.loggedUserDetails = {};
+    localStorage.removeItem("x-auth-token");
+    this.router.navigate(["/"]);
+   }
   private handleError(httpError:HttpErrorResponse):Observable<any>{
     console.log("error in address",httpError);
         const errorMessage = "error login service";

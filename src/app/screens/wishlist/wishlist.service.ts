@@ -41,6 +41,9 @@ export class WishlistService {
       catchError(this.handleError)
     );
   }
+  clearWishlistSize(){
+    this.wishListProducts=[];
+  }
    /*
     remove item to wishlist
     */

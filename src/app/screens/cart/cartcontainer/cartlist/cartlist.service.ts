@@ -119,6 +119,10 @@ export class CartlistService {
       catchError(this.handleError)
     );
   }
+  clearCartSize(){
+    this.cartProducts=[];
+    this.cartProductsWithDetails=[];
+  }
   private handleError(httpError: HttpErrorResponse): Observable<any> {
     console.log(httpError);
     const errorMessage ='some error occured in modifying cart product,please refresh ';
